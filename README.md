@@ -1,34 +1,29 @@
-# Chess-Rating
+# Rating frontend
 
-The goal of project is to make a suitable clojure application that can keep track of rating between people with glicko.
+React frontend for rating players in a league. Uses the glicko backend from [chess-rating](https://github.com/Molyna/chess-rating).
 
-## Requirements
 
-The project requires leinigen and mongo to run. To build the frontend you'll need node and npm as well.
+## Installing and building frontend dependencies
 
-## Installing frontend dependencies
+Install and build frontend dependencies with:
 
-Install frontend dependencies with:
 ```
 npm install
 ```
-## Building frontend
-Build the frontend(combine all the js files into one javascript bundle):
-```
-gulp build
-```
 
-## Running the program
+This bundles all javascript code into the file app/buld/app.js.
 
-To run the program you'll run it through Leinigen. To start it type 
 
-```
-lein ring server
-```
+### Run the app locally
+To run the frontend locally you can install the lightweight http-server by typing into a terminal:
 
-Will start the server
+```npm install -g http-server```
 
-## TODO
+Next, you can serve all files in the app folder by typing: 
 
-Improve to have different games in regards to time limits.
-Make a single runable script so you can do both frot and backend 
+```http-sever app/```
+
+## Developing tips
+Gulp can build automatically whenever it notices a file has changed. Start it with:
+
+```gulp watch```
