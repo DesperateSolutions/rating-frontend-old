@@ -1,11 +1,13 @@
 {
-  "name": "chess-rating",
+  "name": "rating-frontend",
   "version": "0.0.0",
-  "description": "The goal of project is to make a suitable clojure application that can keep track of rating between people with glicko.",
+  "description": "React frontend for rating players in a league.",
   "main": "gulpfile.js",
-  "directories": {
-    "test": "test"
+
+  "scripts": {
+    "postinstall" : "bower install && gulp build"
   },
+
   "dependencies": {
     "browserify": "~12.0.1",
     "gulp": "~3.9.0",
