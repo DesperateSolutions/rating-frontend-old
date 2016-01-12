@@ -1,3 +1,4 @@
 module.exports = {
-    apiUrl : "http://ifisquash.herokuapp.com"
+    apiUrl : "http://ifisquash-backend.herokuapp.com",
+    tournamentName : "IFI Squash"
 };

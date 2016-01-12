@@ -1,4 +1,5 @@
 var React = require('react');
+var config = require('../config/appConfig');
 
 var Navbar = React.createClass({
 
@@ -6,7 +7,7 @@ var Navbar = React.createClass({
         return (
             <nav className="green">
                 <div className="nav-wrapper container">
-                    <a href="#" className="brand-logo">IFI Sjakk</a>
+                    <a href="#" className="brand-logo">{config.tournamentName}</a>
                 </div>
             </nav>
 
