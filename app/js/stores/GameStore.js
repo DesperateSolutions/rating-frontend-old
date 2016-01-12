@@ -1,20 +1,23 @@
-var AppDispatcher = require('../dispatcher/appDispatcher');
-var EventEmitter = require('events').EventEmitter;
-var GameConstants = require('../constants/gameConstants');
-var assign = require('object-assign');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import EventEmitter from 'events';
+import GameConstants from '../constants/GameConstants';
+import assign from 'object-assign';
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var _games = [];
+let _games = [];
 
 
-var GameStore = assign({}, EventEmitter.prototype, {
+class GameStore extends EventEmitter {
+    constructor() {
+      super();
+    }
 
-    getAll: function() {
+    getAll() {
         return _games;
-    },
+    }
 
-    removeGame: function(gameId) {
+    removeGame(gameId) {
         for(var i = 0; i < _games.length; i++) {
             if (_games[i]._id == gameId) {
                 _games.splice(i, 1);
@@ -22,21 +25,21 @@ var GameStore = assign({}, EventEmitter.prototype, {
             }
 
         }
-    },
+    }
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
-    },
+    }
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
-    },
+    }
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
-    },
+    }
 
-    dispatcherIndex: AppDispatcher.register(function(action) {
+    dispatcherIndex(action) {
         switch(action.actionType) {
             case GameConstants.GAMES_UPDATED:
                 _games = action.games;
@@ -49,8 +52,7 @@ var GameStore = assign({}, EventEmitter.prototype, {
         }
 
         return true;
-    })
+    }
+}
 
-});
-
-module.exports = GameStore;
+export default GameStore;

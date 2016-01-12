@@ -1,11 +1,12 @@
 var gulp = require('gulp');
+var babel = require('gulp-babel');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var notify = require("gulp-notify");
 
-var appPath = './app/js/app.js';
+var appPath = './app/js/App.jsx';
 var outPath = './app/build/';
 
 function buildScript(file, watch) {
@@ -15,7 +16,7 @@ function buildScript(file, watch) {
             title: "Compile Error",
             message: "<%= error.message %>"
         }))
-            .pipe(source('app.js'))
+            .pipe(source('App.jsx'))
             .pipe(gulp.dest(outPath))
             .pipe(notify("Rebundled.."));
     }
@@ -25,7 +26,7 @@ function buildScript(file, watch) {
         transform: [reactify],
         debug: true,
         fullPaths: true
-    });
+    }).transform(babel);
 
     if (watch) {
         watchify(bundler);
