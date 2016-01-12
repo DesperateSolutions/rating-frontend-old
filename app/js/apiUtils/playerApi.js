@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var appConfig = require('../config/appConfig');
 
 var PlayerApi = {
     getAll: function(callback) {
@@ -9,14 +10,14 @@ var PlayerApi = {
             }
         };
         var asynchronous = true;
-        xmlHttp.open("GET", "/players", asynchronous);
+        xmlHttp.open("GET", appConfig.apiUrl + "/players", asynchronous);
         xmlHttp.send(null);
     },
 
     create: function (name, callback) {
         $.ajax({
             type: "POST",
-            url: "/addplayer",
+            url: appConfig.apiUrl + "/addplayer",
             data: {name : name.name},
             success: function(data) {
                 location.href = "/";
