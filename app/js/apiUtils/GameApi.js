@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import appConfig from '../config/appConfig';
 
 class GameApi {
 
@@ -10,16 +11,15 @@ class GameApi {
                 callback(null, JSON.parse(xmlHttp.responseText));
             }
         };
-
         let asynchronous = true;
-        xmlHttp.open("GET", "/games", asynchronous);
+        xmlHttp.open("GET", appConfig.apiUrl + "/games", asynchronous);
         xmlHttp.send(null);
     }
 
     create(game, callback) {
         $.ajax({
             type: "POST",
-            url: "/addgame",
+            url: appConfig.apiUrl + "/addgame",
             data: game,
             success: (data) => {
                 location.href = "/";
@@ -38,7 +38,7 @@ class GameApi {
     deleteGame(gameId, callback) {
         $.ajax({
             type: "DELETE",
-            url: "/delete-game",
+            url: appConfig.apiUrl + "/delete-game",
             data: {_id:  gameId},
             success: (data) => {
                 callback(null);

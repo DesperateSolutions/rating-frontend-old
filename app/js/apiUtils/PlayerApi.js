@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import appConfig from '../config/appConfig';
 
 class PlayerApi {
 
@@ -10,16 +11,15 @@ class PlayerApi {
                 callback(null, JSON.parse(xmlHttp.responseText));
             }
         };
-
         let asynchronous = true;
-        xmlHttp.open("GET", "/players", asynchronous);
+        xmlHttp.open("GET", appConfig.apiUrl + "/players", asynchronous);
         xmlHttp.send(null);
     }
 
     create(name, callback) {
         $.ajax({
             type: "POST",
-            url: "/addplayer",
+            url: appConfig.apiUrl + "/addplayer",
             data: {name : name.name},
             success: (data) => {
                 location.href = "/";
