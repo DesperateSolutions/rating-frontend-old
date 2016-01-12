@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import playerStore from './stores/PlayerStore';
+import PlayerStore from './stores/PlayerStore';
 import GameStore from './stores/GameStore';
 import PlayerActions from './actions/PlayerActions';
 import GameActions from './actions/GameActions';
@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    playerStore.addChangeListener(this._onChange);
+    PlayerStore.addChangeListener(this._onChange);
     GameStore.addChangeListener(this._onChange);
   }
 
@@ -31,13 +31,13 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    playerStore.removeChangeListener(this._onChange);
+    PlayerStore.removeChangeListener(this._onChange);
     GameStore.removeChangeListener(this._onChange);
   }
 
   getLeagueState() {
     return {
-      players: playerStore.getAll(),
+      players: PlayerStore.getAll(),
       games: GameStore.getAll()
     };
   }

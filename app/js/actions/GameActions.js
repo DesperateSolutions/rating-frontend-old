@@ -17,7 +17,7 @@ class GameActions {
   }
 
   create(whiteId, blackId, winner) {
-    var result;
+    let result;
     if (winner == "white"){
       result = "1";
     } else if (winner == "black") {
@@ -37,11 +37,13 @@ class GameActions {
       } else {
         AppDispatcher.dispatch({
           actionType: GameConstants.GAME_DELETED,
-          gameId : gameId
+          gameId: gameId
         });
       }
     });
   }
 }
 
-export default GameActions;
+let GameActionsSingleton = new GameActions();
+
+export default GameActionsSingleton;

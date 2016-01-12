@@ -22,4 +22,6 @@ class PlayerActions {
   }
 }
 
-export default PlayerActions;
+let PlayerActionsSingleton = new PlayerActions();
+
+export default PlayerActionsSingleton;

@@ -35,4 +35,6 @@ class PlayerApi {
   }
 }
 
-export default PlayerApi;
+let PlayerApiSingleton = new PlayerApi();
+
+export default PlayerApiSingleton;

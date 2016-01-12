@@ -8,7 +8,7 @@ const CHANGE_EVENT = 'change';
 
 class PlayerStore extends EventEmitter {
   constructor(...args) {
-    super(args);
+    super(...args);
     this._players = [];
   }
 
@@ -45,6 +45,6 @@ class PlayerStore extends EventEmitter {
   }
 }
 
-let playerStore = new PlayerStore();
+let PlayerStoreSingleton = new PlayerStore();
 
-export default playerStore;
+export default PlayerStoreSingleton;

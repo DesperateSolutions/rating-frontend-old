@@ -9,11 +9,11 @@ const CHANGE_EVENT = 'change';
 class GameStore extends EventEmitter {
     constructor(...args) {
       super(...args);
-      this.state._games = [];
+      this._games = [];
     }
 
     getAll() {
-        return this.state._games;
+        return this._games;
     }
 
     removeGame(gameId) {
@@ -41,7 +41,7 @@ class GameStore extends EventEmitter {
     dispatcherIndex(action) {
         switch(action.actionType) {
             case GameConstants.GAMES_UPDATED:
-                this.state._games = action.games;
+                this._games = action.games;
                 GameStore.emitChange();
                 break;
             case GameConstants.GAME_DELETED:
@@ -54,4 +54,6 @@ class GameStore extends EventEmitter {
     }
 }
 
-export default GameStore;
+let GameStoreSingleton = new GameStore();
+
+export default GameStoreSingleton;

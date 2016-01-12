@@ -55,4 +55,6 @@ class GameApi {
   }
 }
 
-export default GameApi;
+let GameApiSingleton = new GameApi();
+
+export default GameApiSingleton;
