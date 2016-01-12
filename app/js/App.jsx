@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import PlayerStore from './stores/PlayerStore';
+import playerStore from './stores/PlayerStore';
 import GameStore from './stores/GameStore';
 import PlayerActions from './actions/PlayerActions';
 import GameActions from './actions/GameActions';
@@ -12,25 +12,16 @@ import GameList from './components/GamesList';
 import AddGame from './components/AddGame';
 import Navbar from './components/Navbar';
 
-function getLeagueState() {
-  return {
-    players : PlayerStore.getAll(),
-    games : GameStore.getAll()
-  };
-}
 
 class App extends React.Component {
 
-  constructor() {
-    super();
-  }
-
-  getInitialState() {
-    return getLeagueState();
+  constructor(options) {
+    super(options);
+    this.state = this.getLeagueState();
   }
 
   componentDidMount () {
-    PlayerStore.addChangeListener(this._onChange);
+    playerStore.addChangeListener(this._onChange);
     GameStore.addChangeListener(this._onChange);
   }
 
@@ -40,8 +31,15 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    PlayerStore.removeChangeListener(this._onChange);
+    playerStore.removeChangeListener(this._onChange);
     GameStore.removeChangeListener(this._onChange);
+  }
+
+  getLeagueState() {
+    return {
+      players: playerStore.getAll(),
+      games: GameStore.getAll()
+    };
   }
 
   render() {
@@ -59,7 +57,7 @@ class App extends React.Component {
   }
 
   _onChange() {
-    this.setState(getLeagueState());
+    this.setState(this.getLeagueState());
   }
 }
 
@@ -69,4 +67,3 @@ ReactDOM.render(
   document.getElementById('content')
 );
 
-export default App;

@@ -1,10 +1,13 @@
 var gulp = require('gulp');
-var babelify = require('babelify');
+var open = require('gulp-open');
+var babel = require('gulp-babel');
 var browserify = require('browserify');
+var babelify = require('babelify');
 var reactify = require('reactify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var notify = require("gulp-notify");
+var react = require('gulp-react');
 
 var appPath = './app/js/App.jsx';
 var outPath = './app/build/';
@@ -26,9 +29,7 @@ function buildScript(file, watch) {
     extensions: ['.jsx', '.js'],
     debug: true,
     fullPaths: true
-  }).transform(babelify.configure({
-    presets: ['es2015', 'react']
-  }));
+  }).transform('babelify', {presets: ['es2015', 'react']});
 
   if (watch) {
     watchify(bundler);

@@ -5,16 +5,15 @@ import assign from 'object-assign';
 
 const CHANGE_EVENT = 'change';
 
-let _games = [];
-
 
 class GameStore extends EventEmitter {
-    constructor() {
-      super();
+    constructor(...args) {
+      super(...args);
+      this.state._games = [];
     }
 
     getAll() {
-        return _games;
+        return this.state._games;
     }
 
     removeGame(gameId) {
@@ -42,7 +41,7 @@ class GameStore extends EventEmitter {
     dispatcherIndex(action) {
         switch(action.actionType) {
             case GameConstants.GAMES_UPDATED:
-                _games = action.games;
+                this.state._games = action.games;
                 GameStore.emitChange();
                 break;
             case GameConstants.GAME_DELETED:

@@ -5,16 +5,15 @@ import Assign from 'object-assign';
 
 const CHANGE_EVENT = 'change';
 
-let _players = [];
-
 
 class PlayerStore extends EventEmitter {
-  constructor() {
-    super();
+  constructor(...args) {
+    super(args);
+    this._players = [];
   }
 
   getAll() {
-    return _players;
+    return this._players;
   }
 
   emitChange() {
@@ -32,7 +31,7 @@ class PlayerStore extends EventEmitter {
   dispatcherIndex(action) {
     switch(action.actionType) {
       case PlayerConstants.PLAYERS_UPDATED:
-        _players = action.players;
+        this._players = action.players;
         PlayerStore.emitChange();
         break;
 
@@ -46,4 +45,6 @@ class PlayerStore extends EventEmitter {
   }
 }
 
-export default PlayerStore;
+let playerStore = new PlayerStore();
+
+export default playerStore;
