@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var appConfig = require('../config/appConfig');
 
 var GameApi = {
 
@@ -10,14 +11,14 @@ var GameApi = {
             }
         };
         var asynchronous = true;
-        xmlHttp.open("GET", "/games", asynchronous);
+        xmlHttp.open("GET", appConfig.apiUrl + "/games", asynchronous);
         xmlHttp.send(null);
     },
 
     create: function (game, callback) {
         $.ajax({
             type: "POST",
-            url: "/addgame",
+            url: appConfig.apiUrl + "/addgame",
             data: game,
             success: function(data) {
                 location.href = "/";
@@ -36,7 +37,7 @@ var GameApi = {
     deleteGame: function (gameId, callback) {
         $.ajax({
             type: "DELETE",
-            url: "/delete-game",
+            url: appConfig.apiUrl + "/delete-game",
             data: {_id:  gameId},
             success: function(data) {
                 callback(null);
