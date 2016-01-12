@@ -23,7 +23,7 @@ function buildScript(file, watch) {
 
   var bundler = browserify({
     entries: [file],
-    extensions: ['.jsx', '.jsx'],
+    extensions: ['.jsx', '.js'],
     debug: true,
     fullPaths: true
   }).transform(babelify.configure({
