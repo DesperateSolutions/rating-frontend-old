@@ -14,56 +14,56 @@ import Navbar from './components/Navbar';
 
 
 class App extends React.Component {
+    constructor(options) {
+        super(options);
+        this.state = this.getLeagueState();
+    }
 
-  constructor(options) {
-    super(options);
-    this.state = this.getLeagueState();
-  }
+    getLeagueState() {
+        return {
+            players: PlayerStore.getAll(),
+            games: GameStore.getAll()
+        };
+    }
 
-  componentDidMount () {
-    PlayerStore.addChangeListener(this._onChange);
-    GameStore.addChangeListener(this._onChange);
-  }
+    _onChange() {
+        this.setState(this.getLeagueState());
+    }
 
-  componentWillMount() {
-    PlayerActions.getAll();
-    GameActions.getAll();
-  }
+    componentDidMount () {
+        PlayerStore.addChangeListener(this._onChange);
+        GameStore.addChangeListener(this._onChange);
+    }
 
-  componentWillUnmount() {
-    PlayerStore.removeChangeListener(this._onChange);
-    GameStore.removeChangeListener(this._onChange);
-  }
+    componentWillMount() {
+        PlayerActions.getAll();
+        GameActions.getAll();
+    }
 
-  getLeagueState() {
-    return {
-      players: PlayerStore.getAll(),
-      games: GameStore.getAll()
-    };
-  }
+    componentWillUnmount() {
+        PlayerStore.removeChangeListener(this._onChange);
+        GameStore.removeChangeListener(this._onChange);
+    }
 
-  render() {
-    return (
-      <div>
-        <Navbar/>
-        <div className="container">
-          <PlayerList players={this.state.players}/>
-          <CreatePlayer/>
-          <GameList games={this.state.games} />
-          <AddGame players={this.state.players}/>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Navbar/>
+                <div className="container">
+                    <PlayerList players={this.state.players}/>
+                    <CreatePlayer/>
+                    <GameList games={this.state.games} />
+                    <AddGame players={this.state.players}/>
+                </div>
+            </div>
+        );
+    }
 
-  _onChange() {
-    this.setState(this.getLeagueState());
-  }
 }
 
 
 ReactDOM.render(
-  <App/>,
-  document.getElementById('content')
+    <App/>,
+    document.getElementById('content')
 );
 

@@ -11,7 +11,7 @@ Install and build frontend dependencies with:
 npm install
 ```
 
-This bundles all javascript code into the file app/buld/App.jsx.
+This bundles all javascript code into the file app/build/App.jsx.
 
 
 ### Run the app locally
