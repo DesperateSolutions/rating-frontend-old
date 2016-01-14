@@ -19,7 +19,7 @@ class GameApi {
     create(game, callback) {
         $.ajax({
             type: "POST",
-            url: appConfig.apiUrl + "/addgame",
+            url: appConfig.apiUrl + "/games",
             data: game,
             success: (data) => {
                 location.href = "/";

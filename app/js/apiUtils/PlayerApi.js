@@ -19,7 +19,7 @@ class PlayerApi {
     create(name, callback) {
         $.ajax({
             type: "POST",
-            url: appConfig.apiUrl + "/addplayer",
+            url: appConfig.apiUrl + "/players",
             data: {name : name.name},
             success: (data) => {
                 location.href = "/";
