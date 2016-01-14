@@ -1,3 +1,3 @@
 module.exports = {
-    apiUrl : "http://ifisquash-backend.herokuapp.com"
+    apiUrl : "http://api-1.chess-rating.vegarm.cont.tutum.io:3000/"
 };
