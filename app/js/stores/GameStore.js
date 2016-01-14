@@ -49,8 +49,6 @@ class GameStore extends EventEmitter {
 let Store = new GameStore();
 
 AppDispatcher.register((action) => {
-    console.log('received action from GameStore');
-    console.log(action.actionType);
     switch(action.actionType) {
         case GameConstants.GAMES_UPDATED:
             Store.setAll(action.games);
