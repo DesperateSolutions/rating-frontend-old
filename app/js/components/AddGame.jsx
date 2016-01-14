@@ -1,7 +1,7 @@
 import React from 'react';
 import GameActions from './../actions/GameActions';
 
-class AddGame extends React.Component {
+export default class AddGame extends React.Component {
 
     constructor() {
         super();
@@ -69,5 +69,3 @@ class AddGame extends React.Component {
         );
     }
 }
-
-export default AddGame;

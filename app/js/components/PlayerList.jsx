@@ -1,7 +1,7 @@
 import React from 'react';
 import Player from './Player.jsx';
 
-class PlayerList extends React.Component {
+export default class PlayerList extends React.Component {
 
     constructor() {
         super();
@@ -32,5 +32,3 @@ class PlayerList extends React.Component {
         );
     }
 }
-
-export default PlayerList;

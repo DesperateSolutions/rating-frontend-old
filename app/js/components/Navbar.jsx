@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Navbar extends React.Component {
+export default class Navbar extends React.Component {
 
     constructor() {
         super();
@@ -17,5 +17,3 @@ class Navbar extends React.Component {
         );
     }
 }
-
-export default Navbar;
