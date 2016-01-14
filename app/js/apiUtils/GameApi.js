@@ -38,7 +38,7 @@ class GameApi {
     deleteGame(gameId, callback) {
         $.ajax({
             type: "DELETE",
-            url: appConfig.apiUrl + "/delete-game",
+            url: appConfig.apiUrl + "/games",
             data: {_id:  gameId},
             success: (data) => {
                 callback(null);
