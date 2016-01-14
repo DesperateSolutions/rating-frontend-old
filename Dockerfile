@@ -10,5 +10,3 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 COPY . /usr/src/app
 RUN npm install --unsafe-perm
 RUN cp -r app/* /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/nginx.conf
