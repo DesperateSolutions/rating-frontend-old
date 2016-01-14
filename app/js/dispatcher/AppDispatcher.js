@@ -1,2 +1,3 @@
 import Dispatcher from 'flux';
-export default Dispatcher;
+let DispatcherSingleton = new Dispatcher();
+export default DispatcherSingleton;
