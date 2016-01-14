@@ -31,8 +31,8 @@ class App extends React.Component {
     }
 
     componentDidMount () {
-        PlayerStore.addChangeListener(this._onChange);
-        GameStore.addChangeListener(this._onChange);
+        PlayerStore.addChangeListener(this._onChange.bind(this));
+        GameStore.addChangeListener(this._onChange.bind(this));
     }
 
     componentWillMount() {
@@ -41,8 +41,8 @@ class App extends React.Component {
     }
 
     componentWillUnmount() {
-        PlayerStore.removeChangeListener(this._onChange);
-        GameStore.removeChangeListener(this._onChange);
+        PlayerStore.removeChangeListener(this._onChange.bind(this));
+        GameStore.removeChangeListener(this._onChange.bind(this));
     }
 
     render() {

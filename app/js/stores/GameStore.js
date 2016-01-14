@@ -12,6 +12,11 @@ class GameStore extends EventEmitter {
         this._games = [];
     }
 
+    setAll(games) {
+        this._games = games;
+        this.emitChange();
+    }
+
     getAll() {
         return this._games;
     }
@@ -24,6 +29,7 @@ class GameStore extends EventEmitter {
             }
 
         }
+        this.emitChange();
     }
 
     emitChange() {
@@ -38,22 +44,21 @@ class GameStore extends EventEmitter {
         this.removeListener(CHANGE_EVENT, callback);
     }
 
-    dispatcherIndex(action) {
-        switch(action.actionType) {
-            case GameConstants.GAMES_UPDATED:
-                this._games = action.games;
-                GameStore.emitChange();
-                break;
-            case GameConstants.GAME_DELETED:
-                GameStore.removeGame(action.gameId);
-                GameStore.emitChange();
-                break;
-        }
-
-        return true;
-    }
 }
 
-let GameStoreSingleton = new GameStore();
+let Store = new GameStore();
 
-export default GameStoreSingleton;
+AppDispatcher.register((action) => {
+    console.log('received action from GameStore');
+    console.log(action.actionType);
+    switch(action.actionType) {
+        case GameConstants.GAMES_UPDATED:
+            Store.setAll(action.games);
+            break;
+        case GameConstants.GAME_DELETED:
+            Store.removeGame(action.gameId);
+            break;
+    }
+});
+
+export default Store;

@@ -12,6 +12,11 @@ class PlayerStore extends EventEmitter {
         this._players = [];
     }
 
+    setAll(players) {
+        this._players = players;
+        this.emitChange();
+    }
+
     getAll() {
         return this._players;
     }
@@ -28,18 +33,18 @@ class PlayerStore extends EventEmitter {
         this.removeListener(CHANGE_EVENT, callback);
     }
 
-    dispatcherIndex(action) {
-        switch(action.actionType) {
-            case PlayerConstants.PLAYERS_UPDATED:
-                this._players = action.players;
-                PlayerStore.emitChange();
-                break;
-        }
-
-        return true; // No errors. Needed by promise in Dispatcher.
-    }
 }
 
-let PlayerStoreSingleton = new PlayerStore();
+let Store = new PlayerStore();
 
-export default PlayerStoreSingleton;
+AppDispatcher.register((action) => {
+    console.log('received action from PlayerStore');
+    console.log(action.actionType);
+    switch(action.actionType) {
+        case PlayerConstants.PLAYERS_UPDATED:
+            Store.setAll(action.players);
+            break;
+    }
+});
+
+export default Store;
