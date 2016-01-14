@@ -8,8 +8,8 @@ const CHANGE_EVENT = 'change';
 
 class GameStore extends EventEmitter {
     constructor(...args) {
-      super(...args);
-      this._games = [];
+        super(...args);
+        this._games = [];
     }
 
     getAll() {
@@ -18,8 +18,8 @@ class GameStore extends EventEmitter {
 
     removeGame(gameId) {
         for(var i = 0; i < _games.length; i++) {
-            if (_games[i]._id == gameId) {
-                _games.splice(i, 1);
+            if (this._games[i]._id == gameId) {
+                this._games.splice(i, 1);
                 break;
             }
 

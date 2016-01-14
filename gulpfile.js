@@ -9,39 +9,40 @@ var appPath = './app/js/App.jsx';
 var outPath = './app/build/';
 
 function buildScript(file, watch) {
-  function rebundle() {
-    var stream = bundler.bundle();
-    return stream.on('error', notify.onError({
-        title: "Compile Error",
-        message: "<%= error.message %>"
-      }))
-      .pipe(source('App.jsx'))
-      .pipe(gulp.dest(outPath))
-      .pipe(notify("Rebundled.."));
-  }
+    function rebundle() {
+        var stream = bundler.bundle();
+        return stream.on('error', notify.onError({
+            title: "Compile Error",
+            message: "<%= error.message %>"
+        }))
+            .pipe(source('App.jsx'))
+            .pipe(gulp.dest(outPath))
+            .pipe(notify("Rebundled.."));
+    }
 
-  var bundler = browserify({
-    entries: [file],
-    extensions: ['.jsx', '.js'],
-    debug: true,
-    fullPaths: true
-  }).transform('babelify', {presets: ['es2015', 'react']});
+    var bundler = browserify({
+        entries: [file],
+        extensions: ['.jsx', '.js'],
+        debug: true,
+        fullPaths: true
+    }).transform('babelify', {presets: ['es2015', 'react']});
 
-  if (watch) {
-    watchify(bundler);
-  }
+    if (watch) {
+        watchify(bundler);
 
-  return rebundle();
+    }
+
+    return rebundle();
 }
 
 gulp.task('build', function() {
-  return buildScript(appPath, false);
+    return buildScript(appPath, false);
 });
 
 gulp.task('watch', function() {
-  return buildScript(appPath, true);
+    return buildScript(appPath, true);
 });
 
 gulp.task('default', ['build'], function() {
-  return buildScript('main.js', true);
+    return buildScript('main.js', true);
 });
