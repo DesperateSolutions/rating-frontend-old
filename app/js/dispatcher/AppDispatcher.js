@@ -1,3 +1,3 @@
-import Dispatcher from 'flux';
-let DispatcherSingleton = new Dispatcher();
-export default DispatcherSingleton;
+import Flux from 'flux';
+let Dispatcher = new Flux.Dispatcher();
+export default Dispatcher;
