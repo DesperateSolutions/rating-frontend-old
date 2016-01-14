@@ -1,7 +1,7 @@
 import React from 'react';
 import GameActions from '../actions/GameActions';
 
-class Game extends React.Component {
+export default class Game extends React.Component {
 
     constructor() {
         super();

@@ -38,8 +38,6 @@ class PlayerStore extends EventEmitter {
 let Store = new PlayerStore();
 
 AppDispatcher.register((action) => {
-    console.log('received action from PlayerStore');
-    console.log(action.actionType);
     switch(action.actionType) {
         case PlayerConstants.PLAYERS_UPDATED:
             Store.setAll(action.players);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerActions from './../actions/PlayerActions';
 
-class CreatePlayer extends React.Component {
+export default class CreatePlayer extends React.Component {
 
     handleChange(event) {
         this.setState({input: event.target.value});
@@ -37,5 +37,3 @@ class CreatePlayer extends React.Component {
         );
     }
 }
-
-export default CreatePlayer;

@@ -2,7 +2,7 @@ import React from 'react';
 import GameActions from '../actions/GameActions';
 import Game from './Game.jsx';
 
-class GamesList extends React.Component {
+export default class GamesList extends React.Component {
 
     constructor() {
         super();
@@ -34,5 +34,3 @@ class GamesList extends React.Component {
         );
     }
 }
-
-export default GamesList;
