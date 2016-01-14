@@ -13,21 +13,21 @@ import AddGame from './components/AddGame';
 import Navbar from './components/Navbar';
 
 
+function getLeagueState() {
+    return {
+        players: PlayerStore.getAll(),
+        games: GameStore.getAll()
+    };
+}
+
 class App extends React.Component {
     constructor(options) {
         super(options);
-        this.state = this.getLeagueState();
-    }
-
-    getLeagueState() {
-        return {
-            players: PlayerStore.getAll(),
-            games: GameStore.getAll()
-        };
+        this.state = getLeagueState();
     }
 
     _onChange() {
-        this.setState(this.getLeagueState());
+        this.setState(getLeagueState());
     }
 
     componentDidMount () {
@@ -58,7 +58,6 @@ class App extends React.Component {
             </div>
         );
     }
-
 }
 
 

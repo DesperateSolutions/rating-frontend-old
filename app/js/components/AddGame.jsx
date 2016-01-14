@@ -3,6 +3,10 @@ import GameActions from './../actions/GameActions';
 
 class AddGame extends React.Component {
 
+    constructor() {
+        super();
+    }
+
     onWhitePlayerChange(event) {
         this.setState({selectedWhitePlayer : event.target.value});
     }
@@ -10,6 +14,7 @@ class AddGame extends React.Component {
     onBlackPlayerChange(event) {
         this.setState({selectedBlackPlayer : event.target.value});
     }
+
 
     onWinnerChange(event) {
         this.setState({result : event.target.value});
@@ -21,7 +26,7 @@ class AddGame extends React.Component {
 
     render() {
 
-        var playerNodes = this.props.players.map(function(player) {
+        let playerNodes = this.props.players.map(function(player) {
             return (
                 <option key={player._id} value={player._id}>{player.name}</option>
             )
@@ -37,22 +42,22 @@ class AddGame extends React.Component {
                         <div className="card-action">
                             <form>
                                 <div className="input-field">
-                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onWhitePlayerChange}>
+                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onWhitePlayerChange.bind(this)}>
                                         <option value="" disabled>Select white player</option>
                                         {playerNodes}
                                     </select>
-                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onBlackPlayerChange}>
+                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onBlackPlayerChange.bind(this)}>
                                         <option value="" disabled>Select black player</option>
                                         {playerNodes}
                                     </select>
                                     <p>
-                                        <input name="resultGroup" type="radio" id="whiteRadio" value="white" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="whiteRadio" value="white" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text" htmlFor="whiteRadio">White</label>
-                                        <input name="resultGroup" type="radio" id="drawRadio" value="draw" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="drawRadio" value="draw" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text" htmlFor="drawRadio">Draw</label>
-                                        <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text"htmlFor="blackRadio">Black</label>
-                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit} >Add game</button>
+                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit.bind(this)} >Add game</button>
                                     </p>
                                 </div>
                             </form>
