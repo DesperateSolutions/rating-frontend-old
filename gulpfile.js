@@ -3,7 +3,6 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
-var notify = require("gulp-notify");
 
 var appPath = './app/js/App.jsx';
 var outPath = './app/build/';
@@ -11,13 +10,8 @@ var outPath = './app/build/';
 function buildScript(file, watch) {
     function rebundle() {
         var stream = bundler.bundle();
-        return stream.on('error', notify.onError({
-            title: "Compile Error",
-            message: "<%= error.message %>"
-        }))
-            .pipe(source('App.jsx'))
-            .pipe(gulp.dest(outPath))
-            .pipe(notify("Rebundled.."));
+        return stream.pipe(source('App.jsx'))
+            .pipe(gulp.dest(outPath));
     }
 
     var bundler = browserify({
