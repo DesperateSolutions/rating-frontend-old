@@ -1,9 +1,10 @@
-var AppDispatcher = require('../dispatcher/appDispatcher');
-var PlayerConstants = require('../constants/playerConstants');
-var ApiUtils = require('../apiUtils/playerApi');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import PlayerConstants from '../constants/PlayerConstants';
+import ApiUtils from '../apiUtils/PlayerApi';
 
-var PlayerActions = {
-    getAll : function() {
+class PlayerActions {
+
+    getAll() {
         ApiUtils.getAll(function (err, players) {
             if(err) {
                 console.log(err);
@@ -14,12 +15,14 @@ var PlayerActions = {
                 });
             }
         });
-    },
+    }
 
-    create: function (name) {
+    create(name) {
         ApiUtils.create({name : name}, function (err, player) {
         });
     }
-};
+}
 
-module.exports = PlayerActions;
+let PlayerActionsSingleton = new PlayerActions();
+
+export default PlayerActionsSingleton;

@@ -1,8 +1,12 @@
-var React = require('react');
+import React from 'react';
 
-var Navbar = React.createClass({
+export default class Navbar extends React.Component {
 
-    render: function() {
+    constructor() {
+        super();
+    }
+
+    render() {
         return (
             <nav className="green">
                 <div className="nav-wrapper container">
@@ -12,6 +16,4 @@ var Navbar = React.createClass({
 
         );
     }
-});
-
-module.exports = Navbar;
+}

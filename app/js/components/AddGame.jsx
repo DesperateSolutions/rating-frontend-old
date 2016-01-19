@@ -1,27 +1,32 @@
-var React = require('react');
-var GameActions = require('./../actions/gameActions');
+import React from 'react';
+import GameActions from './../actions/GameActions';
 
-var AddGame = React.createClass({
+export default class AddGame extends React.Component {
 
-    onWhitePlayerChange: function(event) {
+    constructor() {
+        super();
+    }
+
+    onWhitePlayerChange(event) {
         this.setState({selectedWhitePlayer : event.target.value});
-    },
+    }
 
-    onBlackPlayerChange: function(event) {
+    onBlackPlayerChange(event) {
         this.setState({selectedBlackPlayer : event.target.value});
-    },
+    }
 
-    onWinnerChange: function(event) {
+
+    onWinnerChange(event) {
         this.setState({result : event.target.value});
-    },
+    }
 
-    handleSubmit: function() {
+    handleSubmit() {
         GameActions.create(this.state.selectedWhitePlayer, this.state.selectedBlackPlayer, this.state.result);
-    },
+    }
 
-    render: function() {
+    render() {
 
-        var playerNodes = this.props.players.map(function(player) {
+        let playerNodes = this.props.players.map(function(player) {
             return (
                 <option key={player._id} value={player._id}>{player.name}</option>
             )
@@ -37,22 +42,22 @@ var AddGame = React.createClass({
                         <div className="card-action">
                             <form>
                                 <div className="input-field">
-                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onWhitePlayerChange}>
+                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onWhitePlayerChange.bind(this)}>
                                         <option value="" disabled>Select white player</option>
                                         {playerNodes}
                                     </select>
-                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onBlackPlayerChange}>
+                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onBlackPlayerChange.bind(this)}>
                                         <option value="" disabled>Select black player</option>
                                         {playerNodes}
                                     </select>
                                     <p>
-                                        <input name="resultGroup" type="radio" id="whiteRadio" value="white" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="whiteRadio" value="white" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text" htmlFor="whiteRadio">White</label>
-                                        <input name="resultGroup" type="radio" id="drawRadio" value="draw" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="drawRadio" value="draw" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text" htmlFor="drawRadio">Draw</label>
-                                        <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange}/>
+                                        <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text"htmlFor="blackRadio">Black</label>
-                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit} >Add game</button>
+                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit.bind(this)} >Add game</button>
                                     </p>
                                 </div>
                             </form>
@@ -63,6 +68,4 @@ var AddGame = React.createClass({
 
         );
     }
-});
-
-module.exports = AddGame;
+}

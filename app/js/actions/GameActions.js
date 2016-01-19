@@ -1,10 +1,10 @@
-var ApiUtils = require('../apiUtils/gameApi');
-var AppDispatcher = require('../dispatcher/appDispatcher');
-var GameConstants = require('../constants/gameConstants');
+import ApiUtils from '../apiUtils/GameApi';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import GameConstants from '../constants/GameConstants';
 
-var GameActions = {
+class GameActions {
 
-    getAll : function() {
+    getAll() {
         ApiUtils.getAll(function (err, games) {
             if(err) {
                 console.log(err);
@@ -15,10 +15,10 @@ var GameActions = {
                 });
             }
         });
-    },
+    }
 
-    create: function (whiteId, blackId, winner) {
-        var result;
+    create(whiteId, blackId, winner) {
+        let result;
         if (winner == "white"){
             result = "1";
         } else if (winner == "black") {
@@ -29,20 +29,22 @@ var GameActions = {
 
         ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, function (err, player) {
         });
-    },
+    }
 
-    deleteGame: function(gameId) {
+    deleteGame(gameId) {
         ApiUtils.deleteGame(gameId, function (err) {
             if (err) {
                 console.log(err);
             } else {
                 AppDispatcher.dispatch({
                     actionType: GameConstants.GAME_DELETED,
-                    gameId : gameId
+                    gameId: gameId
                 });
             }
         });
     }
-};
+}
 
-module.exports = GameActions;
+let GameActionsSingleton = new GameActions();
+
+export default GameActionsSingleton;

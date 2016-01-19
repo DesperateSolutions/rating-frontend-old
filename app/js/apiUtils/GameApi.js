@@ -1,56 +1,60 @@
-var $ = require('jquery');
+import $ from 'jquery';
+import appConfig from '../config/appConfig';
 
-var GameApi = {
+class GameApi {
 
-    getAll: function(callback) {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function() {
+    getAll(callback) {
+        let xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.onreadystatechange = () => {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
                 callback(null, JSON.parse(xmlHttp.responseText));
             }
         };
-        var asynchronous = true;
-        xmlHttp.open("GET", "/games", asynchronous);
+        let asynchronous = true;
+        xmlHttp.open("GET", appConfig.apiUrl + "/games", asynchronous);
         xmlHttp.send(null);
-    },
+    }
 
-    create: function (game, callback) {
+    create(game, callback) {
         $.ajax({
             type: "POST",
-            url: "/addgame",
+            url: appConfig.apiUrl + "/games",
             data: game,
-            success: function(data) {
+            success: (data) => {
                 location.href = "/";
             },
-            error: function(err) {
+            error: (err) => {
                 console.log(err);
             },
             statusCode: {
-                406: function(msg) {
-                    msg = JSON.parse(msg.responseJSON.error);
-                }
-            }
-        });
-    },
-
-    deleteGame: function (gameId, callback) {
-        $.ajax({
-            type: "DELETE",
-            url: "/delete-game",
-            data: {_id:  gameId},
-            success: function(data) {
-                callback(null);
-            },
-            error: function(err) {
-                console.log(err);
-            },
-            statusCode: {
-                406: function(msg) {
+                406: (msg) => {
                     msg = JSON.parse(msg.responseJSON.error);
                 }
             }
         });
     }
-};
 
-module.exports = GameApi;
+    deleteGame(gameId, callback) {
+        $.ajax({
+            type: "DELETE",
+            url: appConfig.apiUrl + "/games",
+            data: {_id:  gameId},
+            success: (data) => {
+                callback(null);
+            },
+            error: (err) => {
+                console.log(err);
+            },
+            statusCode: {
+                406: (msg) => {
+                    msg = JSON.parse(msg.responseJSON.error);
+                }
+            }
+        });
+    }
+}
+
+let GameApiSingleton = new GameApi();
+
+export default GameApiSingleton;

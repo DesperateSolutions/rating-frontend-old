@@ -1,9 +1,14 @@
-var React = require('react');
+import React from 'react';
+import Player from './Player.jsx';
 
-var PlayerList = React.createClass({
+export default class PlayerList extends React.Component {
 
-    render: function() {
-        var playerNodes = this.props.players.map(function(player) {
+    constructor() {
+        super();
+    }
+
+    render() {
+        let playerNodes = this.props.players.map(function(player) {
             return (
                 <Player player={player} key={player.name}/>
             )
@@ -20,23 +25,10 @@ var PlayerList = React.createClass({
                     </tr>
                     </thead>
                     <tbody>
-                        {playerNodes}
+                    {playerNodes}
                     </tbody>
                 </table>
             </div>
         );
     }
-});
-
-var Player = React.createClass({
-    render: function() {
-        return (
-            <tr>
-                <th>{this.props.player.name}</th>
-                <th>{this.props.player.rating}</th>
-            </tr>
-        );
-    }
-});
-
-module.exports = PlayerList;
+}

@@ -1,6 +1,6 @@
-var keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
-module.exports = keyMirror({
+let PlayerConstants = keyMirror({
     PLAYERS_UPDATED: null,
     TODO_COMPLETE: null,
     TODO_DESTROY: null,
@@ -9,3 +9,5 @@ module.exports = keyMirror({
     TODO_UNDO_COMPLETE: null,
     TODO_UPDATE_TEXT: null
 });
+
+export default PlayerConstants;

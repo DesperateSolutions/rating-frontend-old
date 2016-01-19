@@ -1,18 +1,17 @@
-var React = require('react');
+import React from 'react';
+import PlayerActions from './../actions/PlayerActions';
 
-var PlayerActions = require('./../actions/playerActions');
+export default class CreatePlayer extends React.Component {
 
-var CreatePlayer = React.createClass({
-
-    handleChange: function(event) {
+    handleChange(event) {
         this.setState({input: event.target.value});
-    },
+    }
 
-    handleSubmit: function() {
+    handleSubmit() {
         PlayerActions.create(this.state.input);
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className="row">
                 <div className="col s12 m6">
@@ -24,10 +23,10 @@ var CreatePlayer = React.createClass({
                             <form>
                                 <div className="row">
                                     <div className="col s8">
-                                        <input className="white-text" type="text" placeholder="Player name" onChange={this.handleChange}/>
+                                        <input className="white-text" type="text" placeholder="Player name" onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="col s4">
-                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleSubmit} >Add</button>
+                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleSubmit.bind(this)} >Add</button>
                                     </div>
                                 </div>
                             </form>
@@ -37,6 +36,4 @@ var CreatePlayer = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = CreatePlayer;
+}
