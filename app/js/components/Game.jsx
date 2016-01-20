@@ -17,7 +17,7 @@ export default class Game extends React.Component {
                 <th>{this.props.game.white}</th>
                 <th>{this.props.game.black}</th>
                 <th>{this.props.game.result}</th>
-                <th><a className="secondary-content action-link" onClick={this.handleDelete}><i className="material-icons">delete</i></a></th>
+                <th><a className="secondary-content action-link" onClick={this.handleDelete.bind(this)}><i className="material-icons">delete</i></a></th>
             </tr>
         );
     }

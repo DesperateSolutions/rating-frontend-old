@@ -8,7 +8,7 @@ export default class PlayerList extends React.Component {
     }
 
     render() {
-        let playerNodes = this.props.players.map(function(player) {
+        let playerNodes = this.props.players.map((player) => {
             return (
                 <Player player={player} key={player.name}/>
             )
@@ -25,7 +25,7 @@ export default class PlayerList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {playerNodes}
+                        {playerNodes}
                     </tbody>
                 </table>
             </div>

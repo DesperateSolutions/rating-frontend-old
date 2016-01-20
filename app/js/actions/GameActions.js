@@ -3,9 +3,8 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import GameConstants from '../constants/GameConstants';
 
 class GameActions {
-
     getAll() {
-        ApiUtils.getAll(function (err, games) {
+        ApiUtils.getAll((err, games) => {
             if(err) {
                 console.log(err);
             } else {
@@ -27,12 +26,12 @@ class GameActions {
             result = "0";
         }
 
-        ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, function (err, player) {
+        ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, (err, player) => {
         });
     }
 
     deleteGame(gameId) {
-        ApiUtils.deleteGame(gameId, function (err) {
+        ApiUtils.deleteGame(gameId, (err) => {
             if (err) {
                 console.log(err);
             } else {

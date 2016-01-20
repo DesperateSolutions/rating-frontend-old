@@ -27,7 +27,6 @@ class GameStore extends EventEmitter {
                 this._games.splice(i, 1);
                 break;
             }
-
         }
         this.emitChange();
     }
@@ -43,7 +42,6 @@ class GameStore extends EventEmitter {
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
-
 }
 
 let Store = new GameStore();

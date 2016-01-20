@@ -25,8 +25,7 @@ export default class AddGame extends React.Component {
     }
 
     render() {
-
-        let playerNodes = this.props.players.map(function(player) {
+        let playerNodes = this.props.players.map((player) => {
             return (
                 <option key={player._id} value={player._id}>{player.name}</option>
             )
@@ -46,7 +45,7 @@ export default class AddGame extends React.Component {
                                         <option value="" disabled>Select white player</option>
                                         {playerNodes}
                                     </select>
-                                    <select className="browser-default" defaultValue="" name="white-id" onChange={this.onBlackPlayerChange.bind(this)}>
+                                    <select className="browser-default" defaultValue="" name="black-id" onChange={this.onBlackPlayerChange.bind(this)}>
                                         <option value="" disabled>Select black player</option>
                                         {playerNodes}
                                     </select>
@@ -57,7 +56,7 @@ export default class AddGame extends React.Component {
                                         <label className="white-text" htmlFor="drawRadio">Draw</label>
                                         <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text"htmlFor="blackRadio">Black</label>
-                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit.bind(this)} >Add game</button>
+                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit.bind(this)}>Add game</button>
                                     </p>
                                 </div>
                             </form>
@@ -65,7 +64,6 @@ export default class AddGame extends React.Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }

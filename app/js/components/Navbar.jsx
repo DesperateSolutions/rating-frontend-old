@@ -13,7 +13,6 @@ export default class Navbar extends React.Component {
                     <a href="#" className="brand-logo">IFI Sjakk</a>
                 </div>
             </nav>
-
         );
     }
 }

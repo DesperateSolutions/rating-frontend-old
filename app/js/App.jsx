@@ -30,7 +30,7 @@ class App extends React.Component {
         this.setState(getLeagueState());
     }
 
-    componentDidMount () {
+    componentDidMount() {
         PlayerStore.addChangeListener(this._onChange.bind(this));
         GameStore.addChangeListener(this._onChange.bind(this));
     }

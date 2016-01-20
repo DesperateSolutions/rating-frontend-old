@@ -3,9 +3,8 @@ import PlayerConstants from '../constants/PlayerConstants';
 import ApiUtils from '../apiUtils/PlayerApi';
 
 class PlayerActions {
-
     getAll() {
-        ApiUtils.getAll(function (err, players) {
+        ApiUtils.getAll((err, players) => {
             if(err) {
                 console.log(err);
             } else {
@@ -18,7 +17,7 @@ class PlayerActions {
     }
 
     create(name) {
-        ApiUtils.create({name : name}, function (err, player) {
+        ApiUtils.create({name : name}, (err, player) => {
         });
     }
 }

@@ -26,7 +26,7 @@ export default class CreatePlayer extends React.Component {
                                         <input className="white-text" type="text" placeholder="Player name" onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="col s4">
-                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleSubmit.bind(this)} >Add</button>
+                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleSubmit.bind(this)}>Add</button>
                                     </div>
                                 </div>
                             </form>
