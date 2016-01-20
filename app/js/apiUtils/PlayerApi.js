@@ -22,7 +22,7 @@ class PlayerApi {
             url: appConfig.apiUrl + "/players",
             data: {name : name.name},
             success: (data) => {
-                location.href = "/";
+                callback(null);
             },
             error: (err) => {
                 console.log(err);
