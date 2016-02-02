@@ -22,7 +22,7 @@ class GameStore extends EventEmitter {
     }
 
     removeGame(gameId) {
-        for(var i = 0; i < _games.length; i++) {
+        for(var i = 0; i < this._games.length; i++) {
             if (this._games[i]._id == gameId) {
                 this._games.splice(i, 1);
                 break;
