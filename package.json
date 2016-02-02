@@ -17,7 +17,10 @@
     "keymirror": "~0.1.1",
     "flux": "~2.1.1",
     "jquery": "~2.1.4",
-    "bower": "latest"
+    "bower": "latest",
+    "babel-preset-es2015": "~6.3.13",
+    "babel-preset-react": "~6.3.13",
+    "babelify": "~7.2.0"
   },
   "repository": {
     "type": "git",
@@ -27,10 +30,5 @@
     "quist",
     "molyna",
     "henninglh"
-  ],
-  "devDependencies": {
-    "babel-preset-es2015": "~6.3.13",
-    "babel-preset-react": "~6.3.13",
-    "babelify": "~7.2.0"
-  }
+  ]
 }
