@@ -34,6 +34,25 @@ class PlayerApi {
             }
         });
     }
+
+    deletePlayer(playerId, callback) {
+        $.ajax({
+            type: "DELETE",
+            url: appConfig.apiUrl + "/players",
+            data: {_id: playerId},
+            success: (data) => {
+                callback(null);
+            },
+            error : (err) => {
+                callback(err);
+            },
+            statusCode: {
+                406: (msg) => {
+                    msg = JSON.parse(msg.responseJSON.error);
+                }
+            }
+        });
+    }
 }
 
 let PlayerApiSingleton = new PlayerApi();

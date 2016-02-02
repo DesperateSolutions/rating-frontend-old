@@ -3,6 +3,7 @@ import PlayerConstants from '../constants/PlayerConstants';
 import ApiUtils from '../apiUtils/PlayerApi';
 
 class PlayerActions {
+
     getAll() {
         ApiUtils.getAll((err, players) => {
             if(err) {
@@ -20,6 +21,20 @@ class PlayerActions {
         ApiUtils.create({name : name}, (err, player) => {
         });
     }
+
+    deletePlayer(playerId) {
+        ApiUtils.deletePlayer(playerId, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                AppDispatcher.dispatch({
+                    actionType : PlayerConstants.PLAYER_DELETED,
+                    playerId: playerId
+                });
+            }
+        });
+    }
+
 }
 
 let PlayerActionsSingleton = new PlayerActions();
