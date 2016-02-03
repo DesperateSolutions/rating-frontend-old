@@ -30,5 +30,8 @@
     "quist",
     "molyna",
     "henninglh"
-  ]
+  ],
+  "devDependencies": {
+    "moment": "^2.11.1"
+  }
 }
