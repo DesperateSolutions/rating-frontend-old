@@ -1,7 +1,6 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import EventEmitter from 'events';
 import GameConstants from '../constants/GameConstants';
-import assign from 'object-assign';
 
 const CHANGE_EVENT = 'change';
 
@@ -9,7 +8,7 @@ const CHANGE_EVENT = 'change';
 class GameStore extends EventEmitter {
     constructor(...args) {
         super(...args);
-        this._games = [];
+        this.setAll([]);
     }
 
     setAll(games) {
