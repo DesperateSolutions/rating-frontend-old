@@ -21,6 +21,7 @@
     "babel-preset-es2015": "~6.3.13",
     "babel-preset-react": "~6.3.13",
     "babelify": "~7.2.0"
+    "moment": "^2.11.1"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,5 @@
     "henninglh"
   ],
   "devDependencies": {
-    "moment": "^2.11.1"
   }
 }
