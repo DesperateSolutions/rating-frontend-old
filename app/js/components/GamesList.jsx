@@ -24,6 +24,7 @@ export default class GamesList extends React.Component {
                         <th>White</th>
                         <th>Black</th>
                         <th>Result</th>
+                        <th>Date</th>
                     </tr>
                     </thead>
                     <tbody>
