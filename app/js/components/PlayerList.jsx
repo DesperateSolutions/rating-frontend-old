@@ -1,5 +1,6 @@
 import React from 'react';
 import Player from './Player.jsx';
+import Sort from '../utils/sorting.js';
 
 export default class PlayerList extends React.Component {
 
@@ -8,7 +9,8 @@ export default class PlayerList extends React.Component {
     }
 
     render() {
-        let playerNodes = this.props.players.map((player) => {
+        let sortedPlayers = this.props.players.sort(Sort.sortBy('rating'));
+        let jsxPlayers = sortedPlayers.map(player => {
             return (
                 <Player player={player} key={player.name}/>
             )
@@ -25,7 +27,7 @@ export default class PlayerList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {playerNodes}
+                        {jsxPlayers}
                     </tbody>
                 </table>
             </div>
