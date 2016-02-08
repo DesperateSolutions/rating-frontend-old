@@ -9,7 +9,7 @@ export default class PlayerList extends React.Component {
     }
 
     render() {
-        let sortedPlayers = this.props.players.sort(Sort.sortBy('name'));
+        let sortedPlayers = this.props.players.sort(Sort.sortBy('rating'));
         let jsxPlayers = sortedPlayers.map(player => {
             return (
                 <Player player={player} key={player.name}/>
