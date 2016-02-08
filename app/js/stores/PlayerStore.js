@@ -20,6 +20,16 @@ class PlayerStore extends EventEmitter {
         return this._players;
     }
 
+    removePlayer(playerId) {
+        for(var i = 0; i < this._players.length; i++) {
+            if (this._players[i]._id == playerId) {
+                this._players.splice(i, 1);
+                break;
+            }
+        }
+        this.emitChange();
+    }
+
     emitChange() {
         this.emit(CHANGE_EVENT);
     }
@@ -40,6 +50,9 @@ AppDispatcher.register((action) => {
     switch(action.actionType) {
         case PlayerConstants.PLAYERS_UPDATED:
             Store.setAll(action.players);
+            break;
+        case PlayerConstants.PLAYER_DELETED:
+            Store.removePlayer(action.playerId);
             break;
     }
 });
