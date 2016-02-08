@@ -19,6 +19,14 @@ class PlayerActions {
 
     create(name) {
         ApiUtils.create({name : name}, (err, player) => {
+            if (err) {
+                console.log(err);
+            } else {
+                AppDispatcher.dispatch({
+                   actionType: PlayerConstants.PLAYER_CREATED,
+                    player : player
+                });
+            }
         });
     }
 
