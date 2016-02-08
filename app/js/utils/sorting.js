@@ -1,12 +1,12 @@
 class Sort {
     sortBy(varName) {
         return (a,b) => {
-            const aLower = a.toLowerCase();
-            const bLower = b.toLowerCase();
-            if (aLower[varName] < bLower[varName]) {
-                return -1;
-            } else if (aLower[varName] > bLower[varName]) {
+            const aValue = a[varName];
+            const bValue = b[varName];
+            if (aValue < bValue) {
                 return 1;
+            } else if (aValue > bValue) {
+                return -1;
             } else {
                 return 0;
             }
