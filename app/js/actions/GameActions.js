@@ -19,11 +19,11 @@ class GameActions {
     create(whiteId, blackId, winner) {
         let result;
         if (winner == "white"){
-            result = "1";
+            result = "1-0";
         } else if (winner == "black") {
-            result = "-1";
+            result = "0-1";
         } else {
-            result = "0";
+            result = "0-0";
         }
 
         ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, (err, player) => {
