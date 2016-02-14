@@ -51,7 +51,7 @@ class PlayerStore extends EventEmitter {
 
 let Store = new PlayerStore();
 
-AppDispatcher.register((action) => {
+AppDispatcher.register(action => {
     switch(action.actionType) {
         case PlayerConstants.PLAYERS_UPDATED:
             Store.setAll(action.players);

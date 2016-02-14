@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
 import PlayerStore from './stores/PlayerStore';
 import GameStore from './stores/GameStore';
@@ -60,9 +61,8 @@ class App extends React.Component {
     }
 }
 
-
 ReactDOM.render(
-    <App/>,
-    document.getElementById('content')
-);
-
+    <Router history={browserHistory}>
+        <Route path="/" component={App}/>
+    </Router>
+, document.getElementById('content'));
