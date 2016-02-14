@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import PlayerStore from './stores/PlayerStore';
 import GameStore from './stores/GameStore';
@@ -12,8 +12,6 @@ import CreatePlayer from './components/CreatePlayer';
 import GameList from './components/GamesList';
 import AddGame from './components/AddGame';
 import Navbar from './components/Navbar';
-
-import routes from './routewrapper';
 
 
 function getLeagueState() {
@@ -63,8 +61,8 @@ class App extends React.Component {
     }
 }
 
-Router.run(routes, (App) => {
-    ReactDOM.render(<App />, document.getElementById('content')
-    );
-});
-
+ReactDOM.render(
+    <Router history={browserHistory}>
+        <Route path="/" component={App}/>
+    </Router>
+, document.getElementById('content'));
