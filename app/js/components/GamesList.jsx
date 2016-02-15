@@ -7,7 +7,6 @@ export default class GamesList extends React.Component {
     constructor() {
         super();
     }
-
     render() {
         let gameNodes = this.props.games.map((game) => {
             return (

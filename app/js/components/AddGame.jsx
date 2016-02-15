@@ -1,10 +1,26 @@
 import React from 'react';
-import GameActions from './../actions/GameActions';
+import GameActions from '../actions/GameActions';
+import PlayerStore from "../stores/PlayerStore";
+import PlayerActions from "../actions/PlayerActions";
 
 export default class AddGame extends React.Component {
 
     constructor() {
         super();
+        this.state = {players: []}
+    }
+
+    _onChange() {
+        this.setState({players: PlayerStore.getAll()});
+    }
+
+    componentDidMount() {
+        PlayerStore.addChangeListener(this._onChange.bind(this));
+        PlayerActions.getAll();
+    }
+
+    componentWillUnmount() {
+        PlayerStore.removeChangeListener(this._onChange.bind(this));
     }
 
     onWhitePlayerChange(event) {
@@ -15,7 +31,6 @@ export default class AddGame extends React.Component {
         this.setState({selectedBlackPlayer : event.target.value});
     }
 
-
     onWinnerChange(event) {
         this.setState({result : event.target.value});
     }
@@ -25,7 +40,7 @@ export default class AddGame extends React.Component {
     }
 
     render() {
-        let playerNodes = this.props.players.map((player) => {
+        let playerNodes = this.state.players.map((player) => {
             return (
                 <option key={player._id} value={player._id}>{player.name}</option>
             )
