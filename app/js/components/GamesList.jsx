@@ -14,6 +14,7 @@ export default class GamesList extends React.Component {
                 <Game game={game} key={game._id}/>
             )
         });
+        gameNodes.reverse();
 
         return (
             <div>
