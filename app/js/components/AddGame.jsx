@@ -73,8 +73,8 @@ export default class AddGame extends React.Component {
                                         <label className="white-text" htmlFor="drawRadio">Draw</label>
                                         <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text"htmlFor="blackRadio">Black</label>
-                                        <button type="button" type="button" className="right btn-large waves-effect waves-light" onClick={this.handleSubmit.bind(this)}>Add game</button>
                                     </p>
+                                    <button type="button" type="button" className="btn-large waves-effect waves-light submit-button" onClick={this.handleSubmit.bind(this)}>Add game</button>
                                 </div>
                             </form>
                         </div>
