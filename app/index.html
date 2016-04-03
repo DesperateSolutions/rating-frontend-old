@@ -8,12 +8,16 @@
     <link type="text/css" rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/app.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.js"></script>
 
     <!--Initialize materilize components-->
     <script type="text/javascript">$( document ).ready(function(){
         $(".button-collapse").sideNav();
+        $("#slide-out li").click(function() { $('.button-collapse').sideNav('hide'); });
     }) </script>
 
 </head>
