@@ -25,7 +25,7 @@ export default class Navbar extends React.Component {
                         <li><Link to="/games">Games</Link></li>
                         <li><Link to="/ranking">Leagues</Link></li>
                     </ul>
-                    <a href="#!" className="brand-logo right">{Config.leagueName}</a>
+                    <a href="/" className="brand-logo right">{Config.leagueName}</a>
                 </div>
             </nav>
         );
