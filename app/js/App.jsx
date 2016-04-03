@@ -7,6 +7,7 @@ import PlayerList from './components/PlayerList';
 import GamesList from './components/GamesList';
 import AddGame from './components/AddGame';
 import GameActions from "./actions/GameActions";
+import PlayerActions from "./actions/PlayerActions";
 
 class App extends React.Component {
 
@@ -16,6 +17,7 @@ class App extends React.Component {
 
     componentDidMount() {
         GameActions.getAll();
+        PlayerActions.getAll();
     }
 
     render() {

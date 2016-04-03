@@ -1,7 +1,6 @@
 import React from 'react';
 import Player from './Player.jsx';
 import Sort from '../utils/sorting.js';
-import PlayerActions from '../actions/PlayerActions';
 import PlayerStore from '../stores/PlayerStore';
 
 
@@ -9,17 +8,10 @@ export default class PlayerList extends React.Component {
 
     constructor() {
         super();
-        this.state = {players : []};
-    }
-
-    getStatesz() {
-        return {
-            players: PlayerStore.getAll()
-        };
+        this.state = {players : PlayerStore.getAll()};
     }
 
     componentDidMount() {
-        PlayerActions.getAll();
         PlayerStore.addChangeListener(this._onChange.bind(this));
     }
 
@@ -28,7 +20,11 @@ export default class PlayerList extends React.Component {
     }
 
     _onChange() {
-        this.setState(this.getStatesz());
+        this.setState(() => {
+            return {
+                players: PlayerStore.getAll()
+            }
+        });
     }
 
     render() {

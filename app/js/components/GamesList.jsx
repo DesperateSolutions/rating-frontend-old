@@ -1,5 +1,4 @@
 import React from 'react';
-import GameActions from '../actions/GameActions';
 import Game from './Game.jsx';
 import GameStore from '../stores/GameStore';
 
@@ -12,6 +11,10 @@ export default class GamesList extends React.Component {
 
     componentDidMount() {
         GameStore.addChangeListener(this._onChange.bind(this));
+    }
+
+    componentWillUnmount() {
+        GameStore.removeChangeListener(this._onChange.bind(this));
     }
 
     _onChange() {

@@ -1,26 +1,28 @@
 import React from 'react';
 import GameActions from '../actions/GameActions';
 import PlayerStore from "../stores/PlayerStore";
-import PlayerActions from "../actions/PlayerActions";
 
 export default class AddGame extends React.Component {
 
     constructor() {
         super();
-        this.state = {players: []}
-    }
-
-    _onChange() {
-        this.setState({players: PlayerStore.getAll()});
+        this.state = {players : PlayerStore.getAll()}
     }
 
     componentDidMount() {
         PlayerStore.addChangeListener(this._onChange.bind(this));
-        PlayerActions.getAll();
     }
 
     componentWillUnmount() {
         PlayerStore.removeChangeListener(this._onChange.bind(this));
+    }
+
+    _onChange() {
+        this.setState(() => {
+            return {
+                players : PlayerStore.getAll()
+            }
+        });
     }
 
     onWhitePlayerChange(event) {
