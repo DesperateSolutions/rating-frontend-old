@@ -1,18 +1,33 @@
 import React from 'react';
 import GameActions from '../actions/GameActions';
 import Game from './Game.jsx';
+import GameStore from '../stores/GameStore';
 
 export default class GamesList extends React.Component {
 
     constructor() {
         super();
+        this.state = {games: GameStore.getAll()};
+    }
+
+    componentDidMount() {
+        GameStore.addChangeListener(this._onChange.bind(this));
+    }
+
+    _onChange() {
+        this.setState( () => {
+            return {
+                games : GameStore.getAll()
+            }
+        });
     }
     render() {
-        let gameNodes = this.props.games.map((game) => {
+        let gameNodes = this.state.games.map((game) => {
             return (
                 <Game game={game} key={game._id}/>
             )
         });
+
         gameNodes.reverse();
 
         return (
@@ -21,8 +36,8 @@ export default class GamesList extends React.Component {
                 <table className="striped">
                     <thead>
                     <tr>
-                        <th>White</th>
-                        <th>Black</th>
+                        <th>Player One</th>
+                        <th>Player Two</th>
                         <th>Result</th>
                         <th>Date</th>
                     </tr>
