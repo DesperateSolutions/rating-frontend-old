@@ -6,7 +6,7 @@ export default class AddGame extends React.Component {
 
     constructor() {
         super();
-        this.state = {players : PlayerStore.getAll()}
+        this.state = {players : PlayerStore.getAll(), selectedWhitePlayer : {name : "Player one"}, selectedBlackPlayer : {name : "Player Two"}}
     }
 
     componentDidMount() {
@@ -25,12 +25,19 @@ export default class AddGame extends React.Component {
         });
     }
 
-    onWhitePlayerChange(event) {
-        this.setState({selectedWhitePlayer : event.target.value});
+    _idToPlayer(id) {
+       return this.state.players.find((player) => {
+           return player._id === id;
+       });
     }
 
+    onWhitePlayerChange(event) {
+        this.setState({selectedWhitePlayer : this._idToPlayer(event.target.value)});
+    }
+
+
     onBlackPlayerChange(event) {
-        this.setState({selectedBlackPlayer : event.target.value});
+        this.setState({selectedBlackPlayer : this._idToPlayer(event.target.value)});
     }
 
     onWinnerChange(event) {
@@ -38,7 +45,7 @@ export default class AddGame extends React.Component {
     }
 
     handleSubmit() {
-        GameActions.create(this.state.selectedWhitePlayer, this.state.selectedBlackPlayer, this.state.result);
+        GameActions.create(this.state.selectedWhitePlayer._id, this.state.selectedBlackPlayer._id, this.state.result);
     }
 
     render() {
@@ -59,20 +66,20 @@ export default class AddGame extends React.Component {
                             <form>
                                 <div className="input-field">
                                     <select className="browser-default" defaultValue="" name="white-id" onChange={this.onWhitePlayerChange.bind(this)}>
-                                        <option value="" disabled>Select white player</option>
+                                        <option value="" disabled>Select player one</option>
                                         {playerNodes}
                                     </select>
                                     <select className="browser-default" defaultValue="" name="black-id" onChange={this.onBlackPlayerChange.bind(this)}>
-                                        <option value="" disabled>Select black player</option>
+                                        <option value="" disabled>Select player two</option>
                                         {playerNodes}
                                     </select>
                                     <p>
                                         <input name="resultGroup" type="radio" id="whiteRadio" value="white" onChange={this.onWinnerChange.bind(this)}/>
-                                        <label className="white-text" htmlFor="whiteRadio">White</label>
+                                        <label className="white-text" htmlFor="whiteRadio">{this.state.selectedWhitePlayer.name}</label>
                                         <input name="resultGroup" type="radio" id="drawRadio" value="draw" onChange={this.onWinnerChange.bind(this)}/>
                                         <label className="white-text" htmlFor="drawRadio">Draw</label>
                                         <input name="resultGroup" type="radio" id="blackRadio" value="black" onChange={this.onWinnerChange.bind(this)}/>
-                                        <label className="white-text"htmlFor="blackRadio">Black</label>
+                                        <label className="white-text"htmlFor="blackRadio">{this.state.selectedBlackPlayer.name}</label>
                                     </p>
                                     <button type="button" type="button" className="btn-large waves-effect waves-light submit-button" onClick={this.handleSubmit.bind(this)}>Add game</button>
                                 </div>
