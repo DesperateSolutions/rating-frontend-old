@@ -16,13 +16,13 @@ export default class Navbar extends React.Component {
                         <li><Link to="/game">Add game</Link></li>
                         <li><Link to="/ranking">Ranking</Link></li>
                         <li><Link to="/games">Games</Link></li>
-                        <li><Link to="/ranking">Leagues</Link></li>
+                        <li><Link to="/leagues">Leagues</Link></li>
                     </ul>
                     <ul className="side-nav" id="slide-out">
                         <li><Link to="/game">Add game</Link></li>
                         <li><Link to="/ranking">Ranking</Link></li>
                         <li><Link to="/games">Games</Link></li>
-                        <li><Link to="/ranking">Leagues</Link></li>
+                        <li><Link to="/leagues">Leagues</Link></li>
                     </ul>
                     <a href="#" data-activates="slide-out" className="button-collapse"><i className="mdi-navigation-menu"></i></a>
                     <a href="/" className="brand-logo right">{Config.leagueName}</a>
