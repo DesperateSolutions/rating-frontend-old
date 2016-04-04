@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import Config from "../config/appConfig";
 
 export default class Navbar extends React.Component {
 
@@ -10,20 +12,23 @@ export default class Navbar extends React.Component {
         return (
             <nav className="green">
                 <div className="nav-wrapper container">
-                    <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     <ul className="left hide-on-med-and-down">
-                        <li><a href="badges.html">Add game</a></li>
-                        <li><a href="mobile.html">Ranking</a></li>
-                        <li><a href="collapsible.html">Leagues</a></li>
+                        <li><Link to="/game">Add game</Link></li>
+                        <li><Link to="/ranking">Ranking</Link></li>
+                        <li><Link to="/games">Games</Link></li>
+                        <li><Link to="/leagues">Leagues</Link></li>
                     </ul>
-                    <ul className="side-nav" id="mobile-demo">
-                        <li><a href="badges.html">Add game</a></li>
-                        <li><a href="mobile.html">Ranking</a></li>
-                        <li><a href="collapsible.html">Leagues</a></li>
+                    <ul className="side-nav" id="slide-out">
+                        <li><Link to="/game">Add game</Link></li>
+                        <li><Link to="/ranking">Ranking</Link></li>
+                        <li><Link to="/games">Games</Link></li>
+                        <li><Link to="/leagues">Leagues</Link></li>
                     </ul>
-                    <a href="#!" className="brand-logo right">Logo</a>
+                    <a href="#" data-activates="slide-out" className="button-collapse"><i className="mdi-navigation-menu"></i></a>
+                    <a href="/" className="brand-logo right">{Config.leagueName}</a>
                 </div>
             </nav>
         );
     }
 }
+

@@ -9,3 +9,8 @@
 .action-link {
     cursor: pointer;
 }
+
+.submit-button {
+    margin-top: 24px;
+    margin-left: 10px;
+}

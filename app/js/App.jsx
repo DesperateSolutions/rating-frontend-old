@@ -1,49 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
-import PlayerStore from './stores/PlayerStore';
-import GameStore from './stores/GameStore';
-import PlayerActions from './actions/PlayerActions';
-import GameActions from './actions/GameActions';
-
-import PlayerList from './components/PlayerList';
-import CreatePlayer from './components/CreatePlayer';
-import GameList from './components/GamesList';
-import AddGame from './components/AddGame';
 import Navbar from './components/Navbar';
-
-
-function getLeagueState() {
-    return {
-        players: PlayerStore.getAll(),
-        games: GameStore.getAll()
-    };
-}
+import PlayerList from './components/PlayerList';
+import GamesList from './components/GamesList';
+import LeagueList from './components/LeagueList';
+import AddGame from './components/AddGame';
+import GameActions from "./actions/GameActions";
+import PlayerActions from "./actions/PlayerActions";
+import LeagueActions from "./actions/LeagueActions";
 
 class App extends React.Component {
+
     constructor(options) {
         super(options);
-        this.state = getLeagueState();
-    }
-
-    _onChange() {
-        this.setState(getLeagueState());
     }
 
     componentDidMount() {
-        PlayerStore.addChangeListener(this._onChange.bind(this));
-        GameStore.addChangeListener(this._onChange.bind(this));
-    }
-
-    componentWillMount() {
-        PlayerActions.getAll();
         GameActions.getAll();
-    }
-
-    componentWillUnmount() {
-        PlayerStore.removeChangeListener(this._onChange.bind(this));
-        GameStore.removeChangeListener(this._onChange.bind(this));
+        PlayerActions.getAll();
+        LeagueActions.getAll();
     }
 
     render() {
@@ -51,10 +28,7 @@ class App extends React.Component {
             <div>
                 <Navbar/>
                 <div className="container">
-                    <PlayerList players={this.state.players}/>
-                    <CreatePlayer/>
-                    <GameList games={this.state.games} />
-                    <AddGame players={this.state.players}/>
+                    {this.props.children}
                 </div>
             </div>
         );
@@ -63,6 +37,12 @@ class App extends React.Component {
 
 ReactDOM.render(
     <Router history={browserHistory}>
-        <Route path="/" component={App}/>
+        <Route path="/" component={App}>
+            <IndexRoute component={AddGame} />
+            <Route path="game" component={AddGame}/>
+            <Route path="games" component={GamesList}/>
+            <Route path="ranking" component={PlayerList}/>
+            <Route path="leagues" component={LeagueList}/>
+        </Route>
     </Router>
 , document.getElementById('content'));
