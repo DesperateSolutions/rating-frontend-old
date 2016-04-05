@@ -29,7 +29,8 @@ export default class PlayerList extends React.Component {
 
     render() {
         let sortedPlayers = this.state.players.sort(Sort.sortBy('rating'));
-        let jsxPlayers = sortedPlayers.map(player => {
+        let jsxPlayers = sortedPlayers.map( (player, i) => {
+            player.rank = (i + 1)  + ".";
             return (
                 <Player player={player} key={player.name}/>
             )
@@ -41,6 +42,7 @@ export default class PlayerList extends React.Component {
                 <table className="striped">
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Rating</th>
                     </tr>

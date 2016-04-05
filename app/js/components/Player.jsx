@@ -10,6 +10,7 @@ export default class Player extends React.Component {
     render() {
         return (
             <tr>
+                <th>{this.props.player.rank}</th>
                 <th>{this.props.player.name}</th>
                 <th>{this.props.player.rating}</th>
                 <th><a className="secondary-content action-link" onClick={this.handleDelete.bind(this)}><i className="material-icons">delete</i></a></th>
