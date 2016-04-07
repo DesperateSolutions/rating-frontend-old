@@ -6,15 +6,16 @@ export default class GamesList extends React.Component {
 
     constructor() {
         super();
+        this._onChange = this._onChange.bind(this);
         this.state = {games: GameStore.getAll()};
     }
 
     componentDidMount() {
-        GameStore.addChangeListener(this._onChange.bind(this));
+        GameStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        GameStore.removeChangeListener(this._onChange.bind(this));
+        GameStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {

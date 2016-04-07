@@ -21,19 +21,19 @@ export default class GamesList extends React.Component {
 
     constructor() {
         super();
+        this._onChange = this._onChange.bind(this);
         this.state = {leagues: LeagueStore.getAll()};
     }
 
     componentDidMount() {
-        LeagueStore.addChangeListener(this._onChange.bind(this));
+        LeagueStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        LeagueStore.removeChangeListener(this._onChange.bind(this));
+        LeagueStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {
-        console.log("Change");
         this.setState( () => {
             return {
                 leagues : LeagueStore.getAll()

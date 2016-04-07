@@ -8,15 +8,16 @@ export default class PlayerList extends React.Component {
 
     constructor() {
         super();
+        this._onChange = this._onChange.bind(this);
         this.state = {players : PlayerStore.getAll()};
     }
 
     componentDidMount() {
-        PlayerStore.addChangeListener(this._onChange.bind(this));
+        PlayerStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        PlayerStore.removeChangeListener(this._onChange.bind(this));
+        PlayerStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {
