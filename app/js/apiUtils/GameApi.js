@@ -22,10 +22,10 @@ class GameApi {
             url: appConfig.apiUrl + "/games",
             data: game,
             success: (data) => {
-                location.href = "/";
+                callback();
             },
             error: (err) => {
-                console.log(err);
+                callback(err.responseText);
             },
             statusCode: {
                 406: (msg) => {

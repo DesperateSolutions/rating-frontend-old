@@ -16,7 +16,7 @@ class GameActions {
         });
     }
 
-    create(whiteId, blackId, winner) {
+    create(whiteId, blackId, winner, callback) {
         let result;
         if (winner == "white"){
             result = "1-0";
@@ -26,7 +26,8 @@ class GameActions {
             result = "0-0";
         }
 
-        ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, (err, player) => {
+        ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, (err) => {
+            callback(err);
         });
     }
 

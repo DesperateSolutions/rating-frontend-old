@@ -7,7 +7,14 @@ export default class AddGame extends React.Component {
     constructor() {
         super();
         this._onChange = this._onChange.bind(this);
-        this.state = {players : PlayerStore.getAll(), selectedWhitePlayer : {name : "Player one"}, selectedBlackPlayer : {name : "Player Two"}}
+        this.state = {
+            players : PlayerStore.getAll(),
+            selectedWhitePlayer : {
+                name : "Player one"
+            },
+            selectedBlackPlayer : {
+                name : "Player Two"}
+        }
     }
 
     componentDidMount() {
@@ -27,15 +34,14 @@ export default class AddGame extends React.Component {
     }
 
     _idToPlayer(id) {
-       return this.state.players.find((player) => {
-           return player._id === id;
-       });
+        return this.state.players.find((player) => {
+            return player._id === id;
+        });
     }
 
     onWhitePlayerChange(event) {
         this.setState({selectedWhitePlayer : this._idToPlayer(event.target.value)});
     }
-
 
     onBlackPlayerChange(event) {
         this.setState({selectedBlackPlayer : this._idToPlayer(event.target.value)});
@@ -46,7 +52,17 @@ export default class AddGame extends React.Component {
     }
 
     handleSubmit() {
-        GameActions.create(this.state.selectedWhitePlayer._id, this.state.selectedBlackPlayer._id, this.state.result);
+        if (!this.state.result) {
+            Materialize.toast('Please set the result', 4000, 'red');
+        } else {
+            GameActions.create(this.state.selectedWhitePlayer._id, this.state.selectedBlackPlayer._id, this.state.result, (err) => {
+                if (err) {
+                    Materialize.toast(err, 4000, 'red');
+                } else {
+                    Materialize.toast("Game added!", 4000, 'green');
+                }
+            });
+        }
     }
 
     render() {
