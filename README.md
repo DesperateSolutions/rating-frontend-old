@@ -18,6 +18,9 @@ sudo apt-get install npm
 sudo npm install -g gulp
 ```
 
+### Point it to the backend!
+
+The frontend relies on a glico-rater-backend running somewhere. Update the baseurl of `app/js/config/appConfig.js` to point to where you so desire.
 
 ### Install dependencies and build the Web app
 
@@ -27,6 +30,7 @@ npm install
 ```
 
 This will download all dependencies and build the application.
+
 
 ### Run the app locally
 
