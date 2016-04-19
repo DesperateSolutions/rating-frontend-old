@@ -18,7 +18,7 @@ sudo apt-get install npm
 sudo npm install -g gulp
 ```
 
-### Point it to the backend!
+### Point it to the correct backend!
 
 The frontend relies on a glico-rater-backend running somewhere. Update the baseurl of `app/js/config/appConfig.js` to point to where you so desire.
 
@@ -47,6 +47,6 @@ Launch it by telling it to serve the app folder:
 ### Launch a browser.
 The Web server reports which port its using. Type `http://localhost:<port>` into your browser and you should now see the Web app.
 
-### Code!
+### Start coding and rebuild!
 
 Everytime you make changes to the code, the application need to be rebuilt. You either build it by invoking `gulp build`, or use `gulp watch`. The last option tells gulp to watch for changes and rebuild the application automatically. Sweet life! And btw, you don't need to restart the http-server.
