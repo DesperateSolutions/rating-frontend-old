@@ -21,7 +21,7 @@ To run the frontend locally you can install the lightweight http-server by typin
 
 Next, you can serve all files in the app folder by typing: 
 
-```http-sever app/```
+```http-server app/```
 
 ## Developing tips
 Gulp can build automatically whenever it notices a file has changed. Start it with:
