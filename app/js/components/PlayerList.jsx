@@ -40,25 +40,28 @@ export default class PlayerList extends React.Component {
 
         return (
             <div className="row">
-                <div className="col s10">
-                    <h1 className="header green-text">Liga</h1>
-                </div>
-                <div className="col s2">
-                    <Link to="/addplayer"> <button type="button" className="btn-large waves-effect waves-light action-button">Add Player</button> </Link>
+                    <div className="col m10 s12">
+                        <h1 className="header green-text">Liga</h1>
+                    </div>
+                    <div className="col m2 s12 table-header">
+                        <Link to="/addplayer"> <button type="button" className="btn-large waves-effect waves-light">Add Player</button> </Link>
+                    </div>
+
+                <div className="col s12">
+                    <table className="striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Rating</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {jsxPlayers}
+                        </tbody>
+                    </table>
                 </div>
 
-                <table className="striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Rating</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {jsxPlayers}
-                    </tbody>
-                </table>
             </div>
         );
     }
