@@ -1,6 +1,6 @@
 import React from 'react';
 import PlayerActions from './../actions/PlayerActions';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 export default class CreatePlayer extends React.Component {
 
