@@ -2,6 +2,7 @@ import React from 'react';
 import Player from './Player.jsx';
 import Sort from '../utils/sorting.js';
 import PlayerStore from '../stores/PlayerStore';
+import {Router, Link} from 'react-router';
 
 
 export default class PlayerList extends React.Component {
@@ -38,8 +39,14 @@ export default class PlayerList extends React.Component {
         });
 
         return (
-            <div>
-                <h1 className="header green-text">Liga</h1>
+            <div className="row">
+                <div className="col s10">
+                    <h1 className="header green-text">Liga</h1>
+                </div>
+                <div className="col s2">
+                    <Link to="/addplayer"> <button type="button" className="btn-large waves-effect waves-light action-button">Add Player</button> </Link>
+                </div>
+
                 <table className="striped">
                     <thead>
                     <tr>

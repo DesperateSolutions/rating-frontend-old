@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerActions from './../actions/PlayerActions';
+import { browserHistory } from 'react-router'
 
 export default class CreatePlayer extends React.Component {
 
@@ -8,7 +9,14 @@ export default class CreatePlayer extends React.Component {
     }
 
     handleSubmit() {
-        PlayerActions.create(this.state.input);
+        PlayerActions.create(this.state.input, (err, player) => {
+            if (err) {
+                Materialize.toast(err, 4000, 'red');
+            } else {
+                browserHistory.push("/ranking");
+                Materialize.toast("Player added!", 4000, 'green');
+            }
+        });
     }
 
     render() {

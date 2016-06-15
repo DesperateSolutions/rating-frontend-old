@@ -7,6 +7,7 @@ import PlayerList from './components/PlayerList';
 import GamesList from './components/GamesList';
 import LeagueList from './components/LeagueList';
 import AddGame from './components/AddGame';
+import AddPlayer from './components/AddPlayer'
 import GameActions from "./actions/GameActions";
 import PlayerActions from "./actions/PlayerActions";
 import LeagueActions from "./actions/LeagueActions";
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
             <IndexRoute component={AddGame} />
             <Route path="game" component={AddGame}/>
+            <Route path="addplayer" component={AddPlayer}/>
             <Route path="games" component={GamesList}/>
             <Route path="ranking" component={PlayerList}/>
             <Route path="leagues" component={LeagueList}/>
