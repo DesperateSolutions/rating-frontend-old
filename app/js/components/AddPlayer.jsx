@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerActions from './../actions/PlayerActions';
+import { browserHistory } from 'react-router'
 
 export default class CreatePlayer extends React.Component {
 
@@ -7,8 +8,24 @@ export default class CreatePlayer extends React.Component {
         this.setState({input: event.target.value});
     }
 
-    handleSubmit() {
-        PlayerActions.create(this.state.input);
+    handleButtonClick() {
+        this.createPlayer();
+    }
+
+    handleFormSubmit(event) {
+        event.preventDefault();
+        this.createPlayer();
+    }
+
+    createPlayer() {
+        PlayerActions.create(this.state.input, (err, player) => {
+            if (err) {
+                Materialize.toast(err, 4000, 'red');
+            } else {
+                browserHistory.push("/ranking");
+                Materialize.toast("Player added!", 4000, 'green');
+            }
+        });
     }
 
     render() {
@@ -20,13 +37,13 @@ export default class CreatePlayer extends React.Component {
                             <span className="card-title">Add Player</span>
                         </div>
                         <div className="card-action">
-                            <form>
+                            <form onSubmit={this.handleFormSubmit.bind(this)}>
                                 <div className="row">
                                     <div className="col s8">
                                         <input className="white-text" type="text" placeholder="Player name" onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="col s4">
-                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleSubmit.bind(this)}>Add</button>
+                                        <button type="button" className="btn-large waves-effect waves-light right" onClick={this.handleButtonClick.bind(this)}>Add</button>
                                     </div>
                                 </div>
                             </form>

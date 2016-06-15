@@ -17,7 +17,7 @@ class PlayerActions {
         });
     }
 
-    create(name) {
+    create(name, callback) {
         ApiUtils.create({name : name}, (err, player) => {
             if (err) {
                 console.log(err);
@@ -26,7 +26,9 @@ class PlayerActions {
                    actionType: PlayerConstants.PLAYER_CREATED,
                     player : player
                 });
+                callback(null, player);
             }
+
         });
     }
 
