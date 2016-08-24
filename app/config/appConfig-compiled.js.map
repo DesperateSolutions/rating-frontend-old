@@ -1,1 +1,0 @@
-{"version":3,"sources":["appConfig.js"],"names":[],"mappings":";;;;;AAAO,IAAM,kCAAa,QAAnB;AACA,IAAM,4BAAU,6CAAhB;AACA,IAAM,0BAAS,UAAU,UAAzB","file":"appConfig-compiled.js","sourcesContent":["export const leagueName = 'squash';\nexport const baseUrl = 'http://glicko-api.desperate.solutions:3000/';\nexport const apiUrl = baseUrl + leagueName;\n"]}
