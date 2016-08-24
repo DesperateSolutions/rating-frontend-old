@@ -5,8 +5,8 @@ var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 
-var appPath = './app/js/App.jsx';
-var outPath = './app/build/';
+var appPath = './app_old/js/App.jsx';
+var outPath = './app_old/build/';
 
 function buildScript(file, watch) {
     function rebundle() {
