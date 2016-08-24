@@ -1,1 +1,0 @@
-{"version":3,"sources":["app.js"],"names":[],"mappings":";;AAAA;;;;AACA;;;;;;AAEA,mBAAS,OAAT,CAAiB;AAAA;AAAA;AAAA;AAAA,CAAjB,EAA+B,SAAS,cAAT,CAAwB,KAAxB,CAA/B","file":"app-compiled.js","sourcesContent":["import React from 'react';\nimport ReactDOM from 'react-dom';\n\nReactDOM.rendder(<h1>Hei</h1>, document.getElementById('app'));\n"]}
