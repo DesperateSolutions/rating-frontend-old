@@ -8,6 +8,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import Navbar from './components/Navbar';
 import Leagues from './containers/Leagues';
+import Ranking from './containers/Ranking';
 import configureStore from './store';
 import rootSaga from './sagas';
 
@@ -55,7 +56,7 @@ ReactDOM.render((
         <Route path="game" component={App} />
         <Route path="addplayer" component={App} />
         <Route path="games" component={App} />
-        <Route path="ranking" component={App} />
+        <Route path="ranking" component={Ranking} />
         <Route path="leagues" component={Leagues} />
       </Route>
     </Router>

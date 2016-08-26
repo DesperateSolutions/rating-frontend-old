@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 
 import { baseUrl } from '../config/appConfig';
 
-export default function getAll() {
+export default function getAllLeagues() {
   return fetch(`${baseUrl}leagues`, {
     method: 'get',
   }).then((response) => (

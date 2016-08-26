@@ -22,7 +22,7 @@ class Leagues extends React.Component {
   render() {
     return (
       <div>
-        <LeagueList leagues={this.props.leagues.leagues} />
+        <LeagueList leagues={this.props.leagues} />
       </div>
     );
   }
@@ -32,7 +32,7 @@ Leagues.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
-    leagues: state.leagues,
+    leagues: state.leagues.leagues,
   };
 }
 
