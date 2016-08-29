@@ -1,6 +1,6 @@
 
 var leagueName = "squash";
-var baseUrl = "http://glicko-api.desperate.solutions:3000/";
+var baseUrl = "https://glicko-api.desperate.solutions/";
 var apiUrl = baseUrl + leagueName;
 
 
