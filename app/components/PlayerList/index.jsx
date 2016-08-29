@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import sortList from '../../utils/sort';
@@ -8,13 +10,12 @@ const propTypes = {
 };
 
 function PlayerList(props) {
-  console.log(props.players);
   const sortedPlayers = props.players.sort(sortList('rating'));
   const playerItems = sortedPlayers.map((player, i) => {
     const newPlayer = player;
     newPlayer.rank = `${i + 1}.`;
     return (
-      <Player player={newPlayer} key={newPlayer.name} />
+      <Player player={newPlayer} key={newPlayer._id} />
     );
   });
   return (

@@ -13,10 +13,11 @@ export function getAllPlayers() {
   );
 }
 
-export function create(name) {
+export function create(playerName) {
+  console.log(playerName);
   return fetch(`${apiUrl}/players`, {
     method: 'post',
-    body: JSON.stringify({ name: name.name }),
+    body: new FormData(document.getElementById('createplayer2')),
   }).then(
     response => ({ response }),
     error => ({ error: error.message || 'Something bad happened' })
