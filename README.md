@@ -15,7 +15,7 @@ In Ubuntu, you can type the following to install them:
 
 ```
 sudo apt-get install npm
-
+```
 
 ### Install dependencies and build the Web app
 
@@ -29,9 +29,9 @@ This will download all dependencies and build the application.
 
 ### Run the app locally
 
-'''
+```
 npm start
-'''
+```
 
 ### Launch a browser.
 The Web server reports which port its using. Type `http://localhost:3333` into your browser and you should now see the Web app.
