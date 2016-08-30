@@ -14,15 +14,15 @@ export function getAllPlayers() {
 }
 
 export function create(playerName) {
-  const form = new FormData();
-  form.append('name', playerName);
-  console.log(form.get('name'));
+  let formBody = [];
+  formBody.push(`name=${playerName}`);
+  formBody = formBody.join('&');
   return fetch(`${apiUrl}/players`, {
     method: 'POST',
-    body: form,
-    headers: new Headers({
+    headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-    }),
+    },
+    body: formBody,
   }).then(
     response => ({ response }),
     error => ({ error: error.message || 'Something bad happened' })
