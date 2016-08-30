@@ -2,6 +2,48 @@
 
 React frontend for rating players in a league. Uses the glicko backend from [chess-rating](https://github.com/Molyna/chess-rating).
 
+
+## Getting started
+
+To build and run the Web app in your browser, you'll need the following tools:
+
+* node.js and NPM
+
+To install them, install them via your favorite package manager.
+
+In Ubuntu, you can type the following to install them:
+
+```
+sudo apt-get install npm
+
+
+### Install dependencies and build the Web app
+
+The rating-frontend Web app relies on a number of libraries. To install them, use the NPM package manager:
+```
+npm install
+```
+
+This will download all dependencies and build the application.
+
+
+### Run the app locally
+
+'''
+npm start
+'''
+
+### Launch a browser.
+The Web server reports which port its using. Type `http://localhost:3333` into your browser and you should now see the Web app.
+
+### Start coding!
+
+The webpack-dev-server builds the app each time you change something, so you don't need to build everything each time :)
+
+
+
+# OLD METHOD NOT IN USE
+
 ## Getting started
 
 To build and run the Web app in your browser, you'll need the following tools:
