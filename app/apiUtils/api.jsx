@@ -6,16 +6,41 @@ const GET = 'GET';
 const POST = 'POST';
 
 function buildGET(url, endpoint) {
-  return `${url}${endpoint}`;
+  return [`${url}${endpoint}`, { method: GET }];
 }
 
-function callApi(url, endpoint) {
-  console.log(url);
-  console.log(endpoint);
-  const geturl = buildGET(url, endpoint);
-  console.log(geturl);
+function buildPOST(url, query) {
+  const postUrl = `${url}${query.league}/${query.player}`;
+  return [
+    postUrl,
+    {
+      method: POST,
+      body: query.playerName,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    },
+  ];
+}
+
+function checkStatus(response) {
+  if (response.status < 200 && response.status > 300) {
+    const error = new Error(response.status);
+    error.response = response;
+    return Promise.reject(error);
+  }
+  return response;
+}
+
+function callApi(url, query, method) {
+  const [getUrl, options] = method === GET ? buildGET(url, query) : buildPOST(url, query);
   return (
-    fetch(geturl)
+    fetch(getUrl, options)
+      .then(checkStatus)
+      .then((response) => (
+        response.json()
+      ))
       .then(
         response => ({ response }),
         error => ({ error: error.message || 'Something bad happened' })
@@ -23,5 +48,6 @@ function callApi(url, endpoint) {
   );
 }
 
-export const getAllPlayers = query => callApi(baseUrl, query);
-export const getAllLeagues = query => callApi(baseUrl, query);
+export const getAllPlayers = query => callApi(baseUrl, query, GET);
+export const getAllLeagues = query => callApi(baseUrl, query, GET);
+export const createPlayer = query => callApi(baseUrl, query, POST);

@@ -15,12 +15,9 @@ import {
   createPlayerSuccess,
   createPlayerError,
 } from '../containers/AddPlayer/actions';
-import getAllLeagues from '../apiUtils/LeagueApi';
-import * as playerAPI from '../apiUtils/PlayerApi';
 import * as API from '../apiUtils/api';
 
 function* allLeaguesSaga(action) {
-  console.log(action.query);
   const { response, error } = yield call(API.getAllLeagues, action.query);
   if (response) {
     yield put(getLeaguesSuccess(response));
@@ -30,7 +27,6 @@ function* allLeaguesSaga(action) {
 }
 
 function* allPlayersSaga(action) {
-  console.log(action.query);
   const { response, error } = yield call(API.getAllPlayers, action.query);
   if (response) {
     yield put(getPlayersSuccess(response));
@@ -40,7 +36,7 @@ function* allPlayersSaga(action) {
 }
 
 function* createPlayerSaga(action) {
-  const { response, error } = yield call(playerAPI.create, action.query);
+  const { response, error } = yield call(API.createPlayer, action.query);
   if (response) {
     yield put(createPlayerSuccess(response));
   } else {

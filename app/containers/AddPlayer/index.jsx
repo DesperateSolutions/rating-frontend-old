@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import * as CreatePlayerActions from './actions';
 
 const propTypes = {
   actions: PropTypes.object,
-  createPlayers: PropTypes.object,
+  createPlayer: PropTypes.object,
 };
 
 class AddPlayer extends React.Component {
@@ -32,8 +33,21 @@ class AddPlayer extends React.Component {
   }
 
   createPlayer() {
-    console.log('CREATE PLAYER');
-    this.props.actions.createPlayer(this.state.input);
+    let formBody = [];
+    formBody.push(`name=${this.state.input}`);
+    formBody = formBody.join('&');
+    const query = {
+      league: 'AulonsLeague',
+      player: 'players',
+      playerName: formBody,
+    };
+    this.props.actions.createPlayer(query);
+    if (this.props.createPlayer.success === true) {
+      browserHistory.push('/ranking');
+      // Materialize.toast('Player added!', 4000, 'green');
+    } else {
+      // Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
+    }
   }
 
   render() {
@@ -48,7 +62,7 @@ class AddPlayer extends React.Component {
             </div>
             <div className="card-action">
               <form
-                onSubmit={this.handleFormSubmi}
+                onSubmit={this.handleFormSubmit}
                 id="createplayer"
               >
                 <div className="row">
