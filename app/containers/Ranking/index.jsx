@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { leagueName } from '../../config/appConfig';
 import PlayerList from '../../components/PlayerList';
 import * as PlayerActions from './actions';
 
@@ -16,7 +17,7 @@ class Ranking extends React.Component {
   }
 
   fetchPlayers() {
-    this.props.actions.getAllPlayers();
+    this.props.actions.getAllPlayers(`${leagueName}/players`);
   }
 
   render() {

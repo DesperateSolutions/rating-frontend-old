@@ -1,8 +1,9 @@
 import * as types from './action-types';
 
-export function getAllPlayers() {
+export function getAllPlayers(query) {
   return {
     type: types.GET_ALL_PLAYERS,
+    query,
   };
 }
 

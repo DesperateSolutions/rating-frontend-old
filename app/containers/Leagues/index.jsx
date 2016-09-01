@@ -16,7 +16,7 @@ class Leagues extends React.Component {
   }
 
   fetchLeagues() {
-    this.props.actions.getAllLeagues();
+    this.props.actions.getAllLeagues('leagues');
   }
 
   render() {
