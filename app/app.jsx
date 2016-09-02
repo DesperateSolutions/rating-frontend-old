@@ -1,4 +1,4 @@
-/* global document */
+/* global document, $ */
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -36,7 +36,7 @@ store.runSaga(rootSaga);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-function App(props) {
+/* function App(props) {
   return (
     <div>
       <Navbar />
@@ -45,6 +45,26 @@ function App(props) {
       </div>
     </div>
   );
+}*/
+
+export default class App extends React.Component {
+  componentDidMount() {
+    $('.button-collapse').sideNav();
+    $('#slide-out li').click(() => {
+      $('.button-collapse').sideNav('hide');
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="container">
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
 }
 
 App.propTypes = propTypes;

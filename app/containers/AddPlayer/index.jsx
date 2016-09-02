@@ -1,3 +1,4 @@
+/* global Materialize */
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -44,9 +45,9 @@ class AddPlayer extends React.Component {
     this.props.actions.createPlayer(query);
     if (this.props.createPlayer.success === true) {
       browserHistory.push('/ranking');
-      // Materialize.toast('Player added!', 4000, 'green');
+      Materialize.toast('Player added!', 4000, 'green');
     } else {
-      // Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
+      Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
     }
   }
 

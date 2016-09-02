@@ -38,9 +38,24 @@ module.exports = {
         test: /\.(png|gif|jpg|svg|woff|woff2|ttf|otf|eot)$/,
         loader: 'url',
       },
+      {
+        test: /materialize-css\/bin\//,
+        loader: 'imports?jQuery=jquery,$=jquery',
+      },
     ],
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    alias: {
+      jquery: path.join(__dirname, 'node_modules/jquery/dist/jquery'),
+    },
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
+    }),
+  ],
 };
