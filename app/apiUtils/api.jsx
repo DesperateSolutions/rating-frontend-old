@@ -51,3 +51,4 @@ function callApi(url, query, method) {
 export const getAllPlayers = query => callApi(baseUrl, query, GET);
 export const getAllLeagues = query => callApi(baseUrl, query, GET);
 export const createPlayer = query => callApi(baseUrl, query, POST);
+export const getAllGames = query => callApi(baseUrl, query, GET);

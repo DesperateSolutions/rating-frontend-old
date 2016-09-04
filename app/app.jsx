@@ -9,6 +9,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Navbar from './components/Navbar';
 import Leagues from './containers/Leagues';
 import Ranking from './containers/Ranking';
+import Games from './containers/Games';
 import AddPlayer from './containers/AddPlayer';
 import configureStore from './store';
 import rootSaga from './sagas';
@@ -35,17 +36,6 @@ const store = configureStore();
 store.runSaga(rootSaga);
 
 const history = syncHistoryWithStore(browserHistory, store);
-
-/* function App(props) {
-  return (
-    <div>
-      <Navbar />
-      <div className="container">
-        {props.children}
-      </div>
-    </div>
-  );
-}*/
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -76,7 +66,7 @@ ReactDOM.render((
         <IndexRoute component={Hei} />
         <Route path="game" component={App} />
         <Route path="addplayer" component={AddPlayer} />
-        <Route path="games" component={App} />
+        <Route path="games" component={Games} />
         <Route path="ranking" component={Ranking} />
         <Route path="leagues" component={Leagues} />
       </Route>

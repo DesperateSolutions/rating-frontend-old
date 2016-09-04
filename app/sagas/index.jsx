@@ -3,6 +3,7 @@ import { call, fork, put } from 'redux-saga/effects';
 import { GET_ALL_LEAGUES } from '../containers/Leagues/action-types';
 import { GET_ALL_PLAYERS } from '../containers/Ranking/action-types';
 import { CREATE_PLAYER } from '../containers/AddPlayer/action-types';
+import { GET_ALL_GAMES } from '../containers/Games/action-types';
 import {
   getLeaguesSuccess,
   getLeaguesError,
@@ -15,6 +16,10 @@ import {
   createPlayerSuccess,
   createPlayerError,
 } from '../containers/AddPlayer/actions';
+import {
+  getGamesSuccess,
+  getGamesError,
+} from '../containers/Games/actions';
 import * as API from '../apiUtils/api';
 
 function* allLeaguesSaga(action) {
@@ -44,6 +49,15 @@ function* createPlayerSaga(action) {
   }
 }
 
+function* allGamesSaga(action) {
+  const { response, error } = yield call(API.getAllGames, action.query);
+  if (response) {
+    yield put(getGamesSuccess(response));
+  } else {
+    yield put(getGamesError(error));
+  }
+}
+
 function* watchLeagues() {
   yield* takeEvery(GET_ALL_LEAGUES, allLeaguesSaga);
 }
@@ -56,10 +70,15 @@ function* watchCreatePlayer() {
   yield* takeEvery(CREATE_PLAYER, createPlayerSaga);
 }
 
+function* watchGames() {
+  yield* takeEvery(GET_ALL_GAMES, allGamesSaga);
+}
+
 export default function* rootSaga() {
   yield [
     fork(watchLeagues),
     fork(watchPlayers),
     fork(watchCreatePlayer),
+    fork(watchGames),
   ];
 }
