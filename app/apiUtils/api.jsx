@@ -9,13 +9,19 @@ function buildGET(url, endpoint) {
   return [`${url}${endpoint}`, { method: GET }];
 }
 
+function buildPOSTBody(body) {
+  return Object.keys(body).map((p) => (
+    (`${encodeURIComponent(p)}=${encodeURIComponent(body[p])}`)
+  )).join('&');
+}
+
 function buildPOST(url, query) {
-  const postUrl = `${url}${query.league}/${query.player}`;
+  const postUrl = `${url}${query.league}/${query.endpoint}`;
   return [
     postUrl,
     {
       method: POST,
-      body: query.playerName,
+      body: buildPOSTBody(query.body),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -52,3 +58,4 @@ export const getAllPlayers = query => callApi(baseUrl, query, GET);
 export const getAllLeagues = query => callApi(baseUrl, query, GET);
 export const createPlayer = query => callApi(baseUrl, query, POST);
 export const getAllGames = query => callApi(baseUrl, query, GET);
+export const addGame = query => callApi(baseUrl, query, POST);

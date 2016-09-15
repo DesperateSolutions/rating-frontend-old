@@ -7,6 +7,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 // import useScroll from 'react-router-scroll';
 
 import Navbar from './components/Navbar';
+import AddGame from './containers/AddGame';
 import Leagues from './containers/Leagues';
 import Ranking from './containers/Ranking';
 import Games from './containers/Games';
@@ -25,12 +26,6 @@ const propTypes = {
     PropTypes.node,
   ]),
 };
-
-function Hei() {
-  return (
-    <h5>Test til andre test komponenter er oppe</h5>
-  );
-}
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -63,8 +58,8 @@ ReactDOM.render((
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Hei} />
-        <Route path="game" component={App} />
+        <IndexRoute component={AddGame} />
+        <Route path="game" component={AddGame} />
         <Route path="addplayer" component={AddPlayer} />
         <Route path="games" component={Games} />
         <Route path="ranking" component={Ranking} />

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import * as CreatePlayerActions from './actions';
+import { leagueName } from '../../config/appConfig';
 
 const propTypes = {
   actions: PropTypes.object,
@@ -34,15 +35,17 @@ class AddPlayer extends React.Component {
   }
 
   createPlayer() {
-    let formBody = [];
-    formBody.push(`name=${this.state.input}`);
-    formBody = formBody.join('&');
     const query = {
-      league: 'AulonsLeague',
-      player: 'players',
-      playerName: formBody,
+      league: leagueName,
+      endpoint: 'players',
+      body: {
+        name: this.state.input,
+      },
     };
+
     this.props.actions.createPlayer(query);
+
+    // TODO: Race-condition, need to fix it
     if (this.props.createPlayer.success === true) {
       browserHistory.push('/ranking');
       Materialize.toast('Player added!', 4000, 'green');

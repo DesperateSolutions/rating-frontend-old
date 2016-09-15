@@ -1,25 +1,16 @@
+/* global Materialize */
 import { takeEvery } from 'redux-saga';
 import { call, fork, put } from 'redux-saga/effects';
 import { GET_ALL_LEAGUES } from '../containers/Leagues/action-types';
 import { GET_ALL_PLAYERS } from '../containers/Ranking/action-types';
 import { CREATE_PLAYER } from '../containers/AddPlayer/action-types';
 import { GET_ALL_GAMES } from '../containers/Games/action-types';
-import {
-  getLeaguesSuccess,
-  getLeaguesError,
-} from '../containers/Leagues/actions';
-import {
-  getPlayersSuccess,
-  getPlayersError,
-} from '../containers/Ranking/actions';
-import {
-  createPlayerSuccess,
-  createPlayerError,
-} from '../containers/AddPlayer/actions';
-import {
-  getGamesSuccess,
-  getGamesError,
-} from '../containers/Games/actions';
+import { ADD_GAME } from '../containers/AddGame/action-types';
+import { getLeaguesSuccess, getLeaguesError } from '../containers/Leagues/actions';
+import { getPlayersSuccess, getPlayersError } from '../containers/Ranking/actions';
+import { createPlayerSuccess, createPlayerError } from '../containers/AddPlayer/actions';
+import { getGamesSuccess, getGamesError } from '../containers/Games/actions';
+import { addGameSuccess, addGameError } from '../containers/AddGame/actions';
 import * as API from '../apiUtils/api';
 
 function* allLeaguesSaga(action) {
@@ -45,6 +36,7 @@ function* createPlayerSaga(action) {
   if (response) {
     yield put(createPlayerSuccess(response));
   } else {
+    Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
     yield put(createPlayerError(error));
   }
 }
@@ -55,6 +47,15 @@ function* allGamesSaga(action) {
     yield put(getGamesSuccess(response));
   } else {
     yield put(getGamesError(error));
+  }
+}
+
+function* addGameSaga(action) {
+  const { response, error } = yield call(API.addGame, action.query);
+  if (response) {
+    yield put(addGameSuccess(response));
+  } else {
+    yield put(addGameError(error));
   }
 }
 
@@ -74,11 +75,16 @@ function* watchGames() {
   yield* takeEvery(GET_ALL_GAMES, allGamesSaga);
 }
 
+function* watchAddGame() {
+  yield* takeEvery(ADD_GAME, addGameSaga);
+}
+
 export default function* rootSaga() {
   yield [
     fork(watchLeagues),
     fork(watchPlayers),
     fork(watchCreatePlayer),
     fork(watchGames),
+    fork(watchAddGame),
   ];
 }

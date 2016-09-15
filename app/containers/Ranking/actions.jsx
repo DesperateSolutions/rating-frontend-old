@@ -21,14 +21,14 @@ export function getPlayersError(error) {
   };
 }
 
-// Create player
+// Create endpoint
 
-// create player success
+// create endpoint success
 
-// create player error
+// create endpoint error
 
-// delete player
+// delete endpoint
 
-// delete player success
+// delete endpoint success
 
-// delete player error
+// delete endpoint error
