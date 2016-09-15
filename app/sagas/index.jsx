@@ -6,6 +6,7 @@ import { GET_ALL_PLAYERS } from '../containers/Ranking/action-types';
 import { CREATE_PLAYER } from '../containers/AddPlayer/action-types';
 import { GET_ALL_GAMES } from '../containers/Games/action-types';
 import { ADD_GAME } from '../containers/AddGame/action-types';
+import * as Toasts from '../utils/toast';
 import { getLeaguesSuccess, getLeaguesError } from '../containers/Leagues/actions';
 import { getPlayersSuccess, getPlayersError } from '../containers/Ranking/actions';
 import { createPlayerSuccess, createPlayerError } from '../containers/AddPlayer/actions';
@@ -35,9 +36,10 @@ function* createPlayerSaga(action) {
   const { response, error } = yield call(API.createPlayer, action.query);
   if (response) {
     yield put(createPlayerSuccess(response));
+    yield call(Toasts.success, 'Player added!');
   } else {
-    Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
     yield put(createPlayerError(error));
+    yield call(Toasts.error, 'ERROR ADDING PLAYER');
   }
 }
 
@@ -54,8 +56,10 @@ function* addGameSaga(action) {
   const { response, error } = yield call(API.addGame, action.query);
   if (response) {
     yield put(addGameSuccess(response));
+    yield call(Toasts.success, 'Game added!');
   } else {
     yield put(addGameError(error));
+    yield call(Toasts.error, 'ERROR ADDING GAME');
   }
 }
 

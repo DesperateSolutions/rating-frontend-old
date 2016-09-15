@@ -2,7 +2,6 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
 import * as CreatePlayerActions from './actions';
 import { leagueName } from '../../config/appConfig';
@@ -44,14 +43,6 @@ class AddPlayer extends React.Component {
     };
 
     this.props.actions.createPlayer(query);
-
-    // TODO: Race-condition, need to fix it
-    if (this.props.createPlayer.success === true) {
-      browserHistory.push('/ranking');
-      Materialize.toast('Player added!', 4000, 'green');
-    } else {
-      Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
-    }
   }
 
   render() {
