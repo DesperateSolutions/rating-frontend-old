@@ -1,0 +1,13 @@
+{
+	"env": {
+		"browser": true,
+	},
+	"extends": "airbnb",
+	"rules": {
+		"max-len": [2, 100, 2, {
+			"ignoreUrls": true,
+			"ignoreComments": false
+		}],
+		"react/prop-types": [ 2, {"ignore": ["children","className"] }],
+		}
+}

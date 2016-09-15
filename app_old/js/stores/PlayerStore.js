@@ -60,7 +60,7 @@ AppDispatcher.register(action => {
             Store.removePlayer(action.playerId);
             break;
         case PlayerConstants.PLAYER_CREATED:
-            Store.addPlayer(action.player);
+            Store.addPlayer(action.endpoint);
             break;
     }
 });
