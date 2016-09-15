@@ -2,10 +2,12 @@ import ApiUtils from '../apiUtils/GameApi';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import GameConstants from '../constants/GameConstants';
 
+import PlayerActions from './PlayerActions';
+
 class GameActions {
     getAll() {
         ApiUtils.getAll((err, games) => {
-            if(err) {
+            if (err) {
                 console.log(err);
             } else {
                 AppDispatcher.dispatch({
@@ -27,6 +29,13 @@ class GameActions {
         }
 
         ApiUtils.create({whiteId : whiteId, blackId : blackId, result : result}, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                PlayerActions.getAll();
+                this.getAll();
+            }
+
             callback(err);
         });
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import GameActions from '../actions/GameActions';
 import PlayerStore from "../stores/PlayerStore";
+import { browserHistory } from 'react-router';
 
 export default class AddGame extends React.Component {
 
@@ -59,6 +60,7 @@ export default class AddGame extends React.Component {
                 if (err) {
                     Materialize.toast(err, 4000, 'red');
                 } else {
+                    browserHistory.push("/ranking");
                     Materialize.toast("Game added!", 4000, 'green');
                 }
             });
