@@ -4,6 +4,8 @@ const initialState = {
   success: false,
   loading: false,
   error: false,
+  selectedWhitePlayer: { name: 'Player One' },
+  selectedBlackPlayer: { name: 'Player Two' },
 };
 
 function addGame(state = initialState, action) {
@@ -28,6 +30,15 @@ function addGame(state = initialState, action) {
         success: false,
         error: true,
       });
+    }
+    case types.CHANGE_WHITE_PLAYER: {
+      return Object.assign({}, state, action.query);
+    }
+    case types.CHANGE_BLACK_PLAYER: {
+      return Object.assign({}, state, action.query);
+    }
+    case types.CHANGE_WINNER: {
+      return Object.assign({}, state, action.query);
     }
     default:
       return state;

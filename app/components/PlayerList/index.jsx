@@ -44,7 +44,7 @@ function PlayerList(props) {
             </tr>
           </thead>
           <tbody>
-          {playerItems}
+            {playerItems}
           </tbody>
         </table>
       </div>

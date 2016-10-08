@@ -20,3 +20,24 @@ export function addGameError(error) {
     error,
   };
 }
+
+export function changeWhitePlayer(query) {
+  return {
+    type: types.CHANGE_WHITE_PLAYER,
+    query,
+  };
+}
+
+export function changeBlackPlayer(query) {
+  return {
+    type: types.CHANGE_BLACK_PLAYER,
+    query,
+  };
+}
+
+export function changeWinner(query) {
+  return {
+    type: types.CHANGE_WINNER,
+    query,
+  };
+}
