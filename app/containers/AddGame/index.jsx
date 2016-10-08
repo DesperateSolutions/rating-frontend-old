@@ -72,13 +72,6 @@ class AddGame extends React.Component {
       };
 
       this.props.createGameActions.addGame(query);
-
-      // TODO: Race-condition, need to fix it
-      if (this.props.addGame.success === true) {
-        Materialize.toast('Player added!', 4000, 'green');
-      } else {
-        Materialize.toast('ERROR ADDING PLAYER', 4000, 'red');
-      }
     }
   }
 
