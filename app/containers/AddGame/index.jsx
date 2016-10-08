@@ -15,6 +15,9 @@ const propTypes = {
   createGameActions: PropTypes.object,
   players: PropTypes.array,
   addGame: PropTypes.object,
+  changeWhitePlayer: PropTypes.object,
+  changeBlackPlayer: PropTypes.object,
+  changeWinner: PropTypes.object,
 };
 
 class AddGame extends React.Component {
@@ -24,10 +27,6 @@ class AddGame extends React.Component {
     this.onWhiteChange = this.onWhiteChange.bind(this);
     this.onWinnerChange = this.onWinnerChange.bind(this);
     this.onSubmitButton = this.onSubmitButton.bind(this);
-    this.state = {
-      selectedWhitePlayer: { name: 'Player One' },
-      selectedBlackPlayer: { name: 'Player Two' },
-    };
   }
 
   componentWillMount() {
@@ -35,24 +34,30 @@ class AddGame extends React.Component {
   }
 
   onBlackChange(e) {
-    this.setState({ selectedBlackPlayer: this.idToPlayer(e.target.value) });
+    this.props.createGameActions.changeBlackPlayer({
+      selectedBlackPlayer: this.idToPlayer(e.target.value),
+    });
   }
 
   onWhiteChange(e) {
-    this.setState({ selectedWhitePlayer: this.idToPlayer(e.target.value) });
+    this.props.createGameActions.changeWhitePlayer({
+      selectedWhitePlayer: this.idToPlayer(e.target.value),
+    });
   }
 
   onWinnerChange(e) {
-    this.setState({ result: e.target.value });
+    this.props.createGameActions.changeWinner({
+      result: e.target.value,
+    });
   }
 
   onSubmitButton() {
-    const white = this.state.selectedWhitePlayer._id;
-    const black = this.state.selectedBlackPlayer._id;
-    if (!this.state.result) {
+    const white = this.props.addGame.selectedWhitePlayer._id;
+    const black = this.props.addGame.selectedBlackPlayer._id;
+    if (!this.props.addGame.result) {
       Materialize.toast('Please set the result', 4000, 'red');
     } else {
-      const winner = this.state.result;
+      const winner = this.props.addGame.result;
       let gameResult;
       if (winner === 'white') {
         gameResult = '1-0';
@@ -94,8 +99,8 @@ class AddGame extends React.Component {
           winnerChange={this.onWinnerChange}
           handleSubmit={this.onSubmitButton}
           players={this.props.players}
-          whitePlayer={this.state.selectedWhitePlayer}
-          blackPlayer={this.state.selectedBlackPlayer}
+          whitePlayer={this.props.addGame.selectedWhitePlayer}
+          blackPlayer={this.props.addGame.selectedBlackPlayer}
         />
       </div>
     );
@@ -107,7 +112,7 @@ AddGame.propTypes = propTypes;
 function mapStateToProps(state) {
   return {
     players: state.players.players,
-    addGame: state.addGame.addGame,
+    addGame: state.addGame,
   };
 }
 

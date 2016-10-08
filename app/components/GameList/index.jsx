@@ -32,7 +32,7 @@ function GameList(props) {
           </tr>
         </thead>
         <tbody>
-        {gameNodes}
+          {gameNodes}
         </tbody>
       </table>
     </div>
