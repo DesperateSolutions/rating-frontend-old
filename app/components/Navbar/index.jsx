@@ -19,11 +19,13 @@ function Navbar() {
           <li><Link to="/leagues">Leagues</Link></li>
         </ul>
         <span
-          href=""
+          href="/"
           data-activates="slide-out"
           className="button-collapse"
         >
-          <i className="mdi-navigation-menu" />
+          <i className="material-icons">
+            menu
+          </i>
         </span>
         <a href="/" className="brand-logo right">{leagueName}</a>
       </div>
